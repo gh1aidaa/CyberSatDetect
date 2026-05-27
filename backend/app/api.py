@@ -51,7 +51,7 @@ from fastapi import (
 
 from fastapi.middleware.cors import CORSMiddleware
 from starlette.middleware.base import BaseHTTPMiddleware
-from fastapi.responses import FileResponse, JSONResponse
+from fastapi.responses import FileResponse, JSONResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
@@ -259,6 +259,12 @@ def sanitize_text(text: str) -> str:
 # Serve frontend pages/assets so routes like /frontend/otp-verify.html are available.
 if FRONTEND_DIR.exists():
     app.mount("/frontend", StaticFiles(directory=str(FRONTEND_DIR), html=True), name="frontend")
+
+
+@app.get("/")
+def root():
+    # Main entrypoint for hosted deployments.
+    return RedirectResponse(url="/frontend/index.html")
 
 # =========================
 # Rate Limiting

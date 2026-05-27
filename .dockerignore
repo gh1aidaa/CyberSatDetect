@@ -1,0 +1,41 @@
+.git
+.github
+.vscode
+.idea
+
+# Python envs
+.venv
+venv
+ENV
+env
+__pycache__
+*.pyc
+
+# Node
+node_modules
+
+# Secrets
+.env
+.env.*
+*.pem
+*.key
+
+# Large data / outputs
+data
+datasets
+outputs
+results
+wandb
+mlruns
+backend/backups
+
+# Binary artifacts
+*.keras
+*.h5
+*.npz
+*.npy
+*.db
+*.sqlite
+*.sqlite3
+*.zip
+
