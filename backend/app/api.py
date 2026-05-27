@@ -656,42 +656,45 @@ def _admin_notify_recipient_list() -> List[str]:
         return []
     return [p.strip() for p in raw.split(",") if p.strip()]
 
-
 def send_admin_notification(subject: str, body: str) -> None:
-    """
-    Administrative email via the same SMTP channel as OTP (GMAIL_USER / GMAIL_APP_PASSWORD).
-    Set CSD_ADMIN_NOTIFY_EMAILS=comma,separated,list. No-op if unset or SMTP not configured.
-    Does not raise (logs only) so HTTP handlers are not affected by mail failures.
-    """
     recipients = _admin_notify_recipient_list()
     if not recipients:
         return
-    sender_email = os.getenv("GMAIL_USER", "")
-    sender_password = os.getenv("GMAIL_APP_PASSWORD", "")
-    if not sender_email or not sender_password:
-        print("[admin-notify] Skipped (no GMAIL_USER / GMAIL_APP_PASSWORD)")
+
+    brevo_api_key = os.getenv("BREVO_API_KEY")
+    smtp_from = os.getenv("SMTP_FROM", "cyberproject2026@gmail.com")
+
+    if not brevo_api_key:
+        print("[admin-notify] Skipped (no BREVO_API_KEY)")
         return
+
     safe_subject = (subject or "notice").replace("\n", " ").replace("\r", " ")[:200]
-    msg = MIMEText(body or "", "plain", "utf-8")
-    msg["Subject"] = f"[CyberSatDetect Admin] {safe_subject}"
-    msg["From"] = sender_email
-    msg["To"] = ", ".join(recipients)
+
     try:
-        with smtplib.SMTP("smtp.gmail.com", 587, timeout=30) as server:
-            server.starttls()
-            server.login(sender_email, sender_password)
-            server.sendmail(sender_email, recipients, msg.as_string())
-        print(f"[admin-notify] Sent: {safe_subject} ({len(recipients)} recipient(s))")
+        response = requests.post(
+            "https://api.brevo.com/v3/smtp/email",
+            headers={
+                "accept": "application/json",
+                "api-key": brevo_api_key,
+                "content-type": "application/json",
+            },
+            json={
+                "sender": {
+                    "name": "CyberSatDetect Admin",
+                    "email": smtp_from
+                },
+                "to": [{"email": email} for email in recipients],
+                "subject": f"[CyberSatDetect Admin] {safe_subject}",
+                "htmlContent": f"<pre>{body or ''}</pre>",
+            },
+            timeout=20,
+        )
+
+        print("[admin-notify] Brevo status:", response.status_code)
+        print("[admin-notify] Brevo response:", response.text)
+
     except Exception as e:
         print(f"[admin-notify] Failed ({safe_subject}): {e}")
-
-
-def schedule_admin_notification(subject: str, body: str) -> None:
-    threading.Thread(
-        target=send_admin_notification,
-        args=(subject, body),
-        daemon=True,
-    ).start()
 
 
 # =========================
