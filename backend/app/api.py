@@ -180,8 +180,8 @@ EPS = 1e-8
 # Web pages / static files
 # =========================
 WEB_DIR = BASE_DIR
-# Repo layout: /app/frontend and /app/backend/app/api.py inside Docker.
-FRONTEND_DIR = BASE_DIR.parent.parent.parent / "frontend"
+# Repo layout in Docker: /app/frontend and /app/backend/app/api.py
+FRONTEND_DIR = BASE_DIR.parent.parent / "frontend"
 ADMIN_CONTINUAL_HTML = FRONTEND_DIR / "admin-cl.html"
 ADMIN_CONTINUAL_CSS = FRONTEND_DIR / "admin-cl.css"
 ADMIN_CONTINUAL_JS = FRONTEND_DIR / "admin-cl.js"
