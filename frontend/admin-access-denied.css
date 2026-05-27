@@ -1,0 +1,59 @@
+/* Shared "admin only" gate — Security + CL Admin */
+
+.access-denied {
+  text-align: center;
+  padding: 80px 20px;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.access-denied-icon {
+  font-size: 3rem;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+  filter: drop-shadow(0 0 8px rgba(255, 77, 79, 0.4));
+}
+
+.access-denied-title {
+  color: #ff4444;
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 0.75rem;
+}
+
+.access-denied-msg {
+  color: #ff6666;
+  font-size: 1.15rem;
+  margin: 0;
+}
+
+.access-denied-msg strong {
+  color: #ff4444;
+}
+
+.access-denied-role {
+  color: #aaa;
+  font-size: 1rem;
+  margin: 12px 0 0;
+}
+
+.access-denied-role-val {
+  color: #00e5ff;
+}
+
+.access-denied-back {
+  display: inline-block;
+  margin-top: 28px;
+  padding: 12px 30px;
+  background: #00e5ff;
+  color: #000;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 700;
+  transition: opacity 0.2s, transform 0.15s;
+}
+
+.access-denied-back:hover {
+  opacity: 0.92;
+  transform: translateY(-1px);
+}

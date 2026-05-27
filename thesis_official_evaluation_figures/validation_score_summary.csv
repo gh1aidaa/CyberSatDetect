@@ -1,0 +1,2 @@
+num_validation_files_listed,num_validation_files_scored_ok,num_rejected_or_invalid,num_validation_windows,window_size,stride,input_shape_timesteps,input_shape_channels,score_mean,score_std,score_min,score_max,score_median
+71,71,0,321142,100,50,100,1,0.0038352700816454907,0.01556420550875223,0.00043665547855198383,0.6289358139038086,0.0017892197938635945

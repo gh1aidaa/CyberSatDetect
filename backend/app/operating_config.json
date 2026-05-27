@@ -1,0 +1,34 @@
+{
+  "model": {
+    "path_note": "API reads model path from CSD_MODEL_PATH or approved registry; this file is only for threshold selection & UI display."
+  },
+  "operating_threshold": {
+    "name": "p99_calibrated",
+    "source": "backend/app/thresholds_qc_filtered.json (thresholds.p99)",
+    "value": 0.20287272334098816,
+    "note": "Operational p99 from QC-filtered calibration file; inference uses same unweighted score as strict evaluation."
+  },
+  "operating_metrics": {
+    "evaluation": "strict four-attack subset (noise, spike, drift, freeze)",
+    "accuracy": 0.9630342392394106,
+    "balanced_accuracy": 0.8746379463346617,
+    "precision": 0.9614264071786505,
+    "recall": 0.7539479456060828,
+    "far": 0.004672052936759317,
+    "fnr": 0.2460527854956865,
+    "f1": 0.8451396785395987,
+    "roc_auc": 0.9958213927944642,
+    "pr_auc": 0.9561506531454553,
+    "confusion_matrix": {
+      "TP": 41250,
+      "TN": 352579,
+      "FP": 1655,
+      "FN": 13462
+    }
+  },
+  "metrics_reference": {
+    "source": "backend/app/qc_filtered_best_f1_metrics.json",
+    "note": "Dashboard snapshot at operational p99 (four-attack strict eval) when active thresholds are thresholds_qc_filtered.json. Full copy also under thresholds_qc_filtered.json performance_metrics."
+  }
+}
+

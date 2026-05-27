@@ -1,0 +1,71 @@
+<p:sp xmlns:p="http://schemas.openxmlformats.org/presentationml/2006/main" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">
+  <p:nvSpPr>
+    <p:cNvPr id="3" name="TextBox 17">
+      <a:extLst>
+        <a:ext uri="{FF2B5EF4-FFF2-40B4-BE49-F238E27FC236}">
+          <a16:creationId xmlns:a16="http://schemas.microsoft.com/office/drawing/2014/main" id="{E9E1F8EB-A785-F875-4B11-71D97A11B5DF}"/>
+        </a:ext>
+      </a:extLst>
+    </p:cNvPr>
+    <p:cNvSpPr txBox="1"/>
+    <p:nvPr/>
+  </p:nvSpPr>
+  <p:spPr>
+    <a:xfrm>
+      <a:off x="18082784" y="8602481"/>
+      <a:ext cx="1852999" cy="695062"/>
+    </a:xfrm>
+    <a:prstGeom prst="rect">
+      <a:avLst/>
+    </a:prstGeom>
+    <a:noFill/>
+  </p:spPr>
+  <p:txBody>
+    <a:bodyPr wrap="square" rtlCol="0">
+      <a:spAutoFit/>
+    </a:bodyPr>
+    <a:lstStyle/>
+    <a:p>
+      <a:pPr marL="0" marR="0" lvl="0" indent="0" algn="r" defTabSz="457200" rtl="1" eaLnBrk="1" fontAlgn="auto" latinLnBrk="0" hangingPunct="1">
+        <a:lnSpc>
+          <a:spcPts val="4700"/>
+        </a:lnSpc>
+        <a:spcBef>
+          <a:spcPts val="0"/>
+        </a:spcBef>
+        <a:spcAft>
+          <a:spcPts val="0"/>
+        </a:spcAft>
+        <a:buClrTx/>
+        <a:buSzTx/>
+        <a:buFontTx/>
+        <a:buNone/>
+        <a:tabLst/>
+        <a:defRPr/>
+      </a:pPr>
+      <a:r>
+        <a:rPr lang="ar-SA" sz="4000" dirty="0">
+          <a:solidFill>
+            <a:schemeClr val="tx1">
+              <a:lumMod val="50000"/>
+              <a:lumOff val="50000"/>
+            </a:schemeClr>
+          </a:solidFill>
+          <a:latin typeface="DIN Next LT Arabic" panose="020B0503020203050203" pitchFamily="34" charset="-78"/>
+          <a:cs typeface="DIN Next LT Arabic" panose="020B0503020203050203" pitchFamily="34" charset="-78"/>
+        </a:rPr>
+        <a:t>مقدمة</a:t>
+      </a:r>
+      <a:endParaRPr lang="en-US" sz="4000" b="0" dirty="0">
+        <a:solidFill>
+          <a:schemeClr val="tx1">
+            <a:lumMod val="50000"/>
+            <a:lumOff val="50000"/>
+          </a:schemeClr>
+        </a:solidFill>
+        <a:latin typeface="DIN Next LT Arabic" panose="020B0503020203050203" pitchFamily="34" charset="-78"/>
+        <a:cs typeface="DIN Next LT Arabic" panose="020B0503020203050203" pitchFamily="34" charset="-78"/>
+      </a:endParaRPr>
+    </a:p>
+  </p:txBody>
+</p:sp>

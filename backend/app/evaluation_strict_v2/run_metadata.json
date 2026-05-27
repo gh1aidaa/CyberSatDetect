@@ -1,0 +1,21 @@
+{
+  "started_at": "2026-04-29T13:33:19Z",
+  "model": "C:\\Users\\mohan\\Desktop\\gh\\CyberSatDetectprojct2\\CyberSatDetectprojct\\backend\\app\\best_model.keras",
+  "normal_dir": "C:\\Users\\mohan\\Desktop\\gh\\CyberSatDetectprojct2\\CyberSatDetectprojct\\data\\reduced",
+  "attacked_dir": "C:\\Users\\mohan\\Desktop\\gh\\CyberSatDetectprojct2\\CyberSatDetectprojct\\data\\attacked_v2",
+  "split_json": "C:\\Users\\mohan\\Desktop\\gh\\CyberSatDetectprojct2\\CyberSatDetectprojct\\backend\\config\\data_split.json",
+  "split_key": "test",
+  "window_size": 100,
+  "stride": 50,
+  "batch_size": 256,
+  "limits": {
+    "max_files": 0,
+    "max_attacked_files": 0,
+    "window_scores_csv_limit": 500000
+  },
+  "notes": [
+    "Statistical thresholds computed from NORMAL TEST scores only (unsupervised rule).",
+    "Attacked_v2 labels are used ONLY for evaluation metrics (supervised-for-measurement)."
+  ],
+  "finished_at": "2026-04-29T13:40:49Z"
+}

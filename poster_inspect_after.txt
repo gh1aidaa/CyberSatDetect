@@ -1,0 +1,238 @@
+Slide size: 84.1 x 118.9 cm
+Num slides: 1
+
+=== Slide 1 ===
+  [0] AUTO_SHAPE (1) name='Rectangle 1' L=1.41 T=4.43 W=84.1 H=118.9
+  [1] AUTO_SHAPE (1) name='Rectangle 2' L=0.0 T=0.7 W=14.0 H=0.1
+  [2] AUTO_SHAPE (1) name='Rectangle 3' L=0.0 T=1.4 W=14.0 H=0.1
+  [3] AUTO_SHAPE (1) name='Rectangle 4' L=0.0 T=2.1 W=14.0 H=0.1
+  [4] AUTO_SHAPE (1) name='Rectangle 5' L=70.1 T=118.1 W=14.0 H=0.1
+  [5] AUTO_SHAPE (1) name='Rectangle 6' L=70.1 T=117.4 W=14.0 H=0.1
+  [6] AUTO_SHAPE (1) name='Rectangle 7' L=70.1 T=116.7 W=14.0 H=0.1
+  [7] AUTO_SHAPE (1) name='Rectangle 8' L=5.0 T=4.0 W=74.1 H=17.61
+  [8] AUTO_SHAPE (1) name='Rectangle 9' L=5.0 T=4.0 W=74.1 H=0.4
+  [9] AUTO_SHAPE (1) name='Rectangle 10' L=4.97 T=21.69 W=74.1 H=0.5
+  [10] AUTO_SHAPE (1) name='Rounded Rectangle 11' L=40.74 T=21.21 W=0.4 H=0.4
+  [11] AUTO_SHAPE (1) name='Rounded Rectangle 12' L=41.62 T=21.21 W=0.4 H=0.4
+  [12] AUTO_SHAPE (1) name='Rounded Rectangle 13' L=42.45 T=21.21 W=0.4 H=0.4
+  [13] TEXT_BOX (17) name='TextBox 16' L=26.0 T=4.8 W=32.1 H=1.4
+      text: 'UMM AL-QURA UNIVERSITY  •  COLLEGE OF COMPUTING  •  CYBERSECURITY DEPARTMENT'
+  [14] TEXT_BOX (17) name='TextBox 17' L=26.0 T=6.6 W=32.1 H=5.0
+      text: 'CyberSatDetect'
+  [15] TEXT_BOX (17) name='TextBox 18' L=26.0 T=11.2 W=32.1 H=2.6
+      text: 'AI-Based Satellite Telemetry Anomaly Detection System'
+  [16] AUTO_SHAPE (1) name='Rectangle 19' L=29.2 T=13.44 W=26.0 H=0.22
+  [17] TEXT_BOX (17) name='TextBox 20' L=26.15 T=14.16 W=32.1 H=1.5
+      text: 'Hybrid LSTM-GRU Autoencoder  •  Self-Supervised  •  Continual Learning'
+  [18] TEXT_BOX (17) name='TextBox 21' L=25.5 T=15.97 W=32.1 H=1.4
+      text: 'PROJECT TEAM'
+  [19] TEXT_BOX (17) name='TextBox 22' L=26.06 T=16.87 W=32.1 H=1.6
+      text: 'Ghaidaa S. Algarni   •   Alaa F. Alhazmi   •   Bayan A. Alzahrani   •   Ghaidaa A. Almasudi'
+  [20] TEXT_BOX (17) name='TextBox 23' L=25.8 T=18.32 W=32.1 H=1.4
+      text: 'SUPERVISOR:   | Dr. Ehad A. Aljarf'
+  [21] AUTO_SHAPE (1) name='Rounded Rectangle 24' L=5.0 T=22.5 W=36.45 H=18.5
+  [22] AUTO_SHAPE (1) name='Rounded Rectangle 25' L=5.0 T=22.5 W=36.45 H=3.0
+  [23] AUTO_SHAPE (1) name='Rectangle 26' L=5.76 T=23.12 W=0.76 H=1.8
+  [24] AUTO_SHAPE (1) name='Rounded Rectangle 27' L=6.98 T=23.06 W=3.36 H=1.9
+  [25] TEXT_BOX (17) name='TextBox 28' L=6.98 T=23.06 W=3.36 H=1.9
+      text: '1'
+  [26] PICTURE (13) name='Picture 29' L=38.05 T=22.91 W=2.2 H=2.2
+  [27] TEXT_BOX (17) name='TextBox 30' L=11.1 T=22.75 W=24.25 H=2.2
+      text: 'INTRODUCTION'
+  [28] TEXT_BOX (17) name='TextBox 31' L=6.07 T=26.09 W=34.31 H=12.53
+      text: 'Satellites are essential components of modern communication, navigation, and defense systems.  | The rapid expansion of satellite infrastructures has increased exposure to advanced cyber threats.  | T...'
+  [29] TEXT_BOX (17) name='TextBox 39' L=28.74 T=36.69 W=11.03 H=2.0
+  [30] AUTO_SHAPE (1) name='Rounded Rectangle 41' L=5.0 T=42.0 W=36.45 H=18.5
+  [31] AUTO_SHAPE (1) name='Rounded Rectangle 42' L=5.0 T=42.0 W=36.45 H=3.0
+  [32] AUTO_SHAPE (1) name='Rectangle 43' L=5.76 T=42.62 W=0.76 H=1.8
+  [33] AUTO_SHAPE (1) name='Rounded Rectangle 44' L=6.98 T=42.57 W=3.36 H=1.9
+  [34] TEXT_BOX (17) name='TextBox 45' L=6.98 T=42.57 W=3.36 H=1.9
+      text: '2'
+  [35] PICTURE (13) name='Picture 46' L=38.05 T=42.41 W=2.2 H=2.2
+  [36] TEXT_BOX (17) name='TextBox 47' L=11.41 T=42.41 W=24.25 H=2.2
+      text: 'PROBLEM STATEMENT'
+  [37] TEXT_BOX (17) name='TextBox 48' L=6.07 T=45.59 W=34.31 H=14.53
+      text: 'Modern satellite systems are increasingly exposed to sophisticated cyber threats.  | Traditional security approaches rely on static rules and manual monitoring.  | Existing methods struggle to detect ...'
+  [38] AUTO_SHAPE (1) name='Rounded Rectangle 53' L=5.0 T=61.5 W=36.45 H=18.5
+  [39] AUTO_SHAPE (1) name='Rounded Rectangle 54' L=5.0 T=61.5 W=36.45 H=3.0
+  [40] AUTO_SHAPE (1) name='Rectangle 55' L=5.76 T=62.11 W=0.76 H=1.8
+  [41] AUTO_SHAPE (1) name='Rounded Rectangle 56' L=6.98 T=62.06 W=3.36 H=1.9
+  [42] TEXT_BOX (17) name='TextBox 57' L=6.98 T=62.06 W=3.36 H=1.9
+      text: '3'
+  [43] PICTURE (13) name='Picture 58' L=38.05 T=61.91 W=2.2 H=2.2
+  [44] TEXT_BOX (17) name='TextBox 59' L=11.41 T=61.91 W=24.25 H=2.2
+      text: 'PROPOSED  SOLUTION'
+  [45] TEXT_BOX (17) name='TextBox 60' L=6.07 T=65.09 W=34.31 H=2.2
+      text: 'A self-supervised Hybrid LSTM-GRU Autoencoder that learns from normal-only telemetry and flags anomalies in real time.'
+  [46] AUTO_SHAPE (1) name='Rounded Rectangle 61' L=6.07 T=67.81 W=4.58 H=2.01
+  [47] TEXT_BOX (17) name='TextBox 62' L=6.07 T=67.81 W=4.58 H=2.01
+      text: 'DETECT'
+  [48] TEXT_BOX (17) name='TextBox 63' L=11.1 T=67.76 W=29.28 H=2.21
+      text: 'Unsupervised hybrid model for anomaly detection.'
+  [49] AUTO_SHAPE (1) name='Rounded Rectangle 64' L=6.07 T=70.07 W=4.58 H=2.01
+  [50] TEXT_BOX (17) name='TextBox 65' L=6.07 T=70.07 W=4.58 H=2.01
+      text: 'COVER'
+  [51] TEXT_BOX (17) name='TextBox 66' L=11.1 T=70.02 W=29.28 H=2.21
+      text: 'Four attack types: Drift, Freeze, Noise, Spike.'
+  [52] AUTO_SHAPE (1) name='Rounded Rectangle 67' L=6.07 T=72.34 W=4.58 H=2.01
+  [53] TEXT_BOX (17) name='TextBox 68' L=6.07 T=72.34 W=4.58 H=2.01
+      text: 'REDUCE'
+  [54] TEXT_BOX (17) name='TextBox 69' L=11.1 T=72.28 W=29.28 H=2.21
+      text: 'Lower FAR using normal-only thresholds.'
+  [55] AUTO_SHAPE (1) name='Rounded Rectangle 70' L=6.07 T=74.6 W=4.58 H=2.01
+  [56] TEXT_BOX (17) name='TextBox 71' L=6.07 T=74.6 W=4.58 H=2.01
+      text: 'ADAPT'
+  [57] TEXT_BOX (17) name='TextBox 72' L=11.1 T=74.55 W=29.28 H=2.21
+      text: 'Continual learning with admin approval.'
+  [58] AUTO_SHAPE (1) name='Rounded Rectangle 73' L=6.07 T=76.86 W=4.58 H=2.01
+  [59] TEXT_BOX (17) name='TextBox 74' L=6.07 T=76.86 W=4.58 H=2.01
+      text: 'DEPLOY'
+  [60] TEXT_BOX (17) name='TextBox 75' L=11.1 T=76.81 W=29.28 H=2.21
+      text: 'Dashboard, REST API, secure system, and offline analysis.'
+  [61] AUTO_SHAPE (1) name='Rounded Rectangle 76' L=42.65 T=22.5 W=36.45 H=18.5
+  [62] AUTO_SHAPE (1) name='Rounded Rectangle 77' L=42.65 T=22.5 W=36.45 H=3.0
+  [63] AUTO_SHAPE (1) name='Rectangle 78' L=43.41 T=23.12 W=0.76 H=1.8
+  [64] AUTO_SHAPE (1) name='Rounded Rectangle 79' L=44.63 T=23.06 W=3.36 H=1.9
+  [65] TEXT_BOX (17) name='TextBox 80' L=44.63 T=23.06 W=3.36 H=1.9
+      text: '4'
+  [66] PICTURE (13) name='Picture 81' L=75.7 T=22.91 W=2.2 H=2.2
+  [67] TEXT_BOX (17) name='TextBox 82' L=49.06 T=22.91 W=24.25 H=2.2
+      text: 'METHODOLOGY  &  AI PIPELINE'
+  [68] AUTO_SHAPE (1) name='Rounded Rectangle 84' L=42.65 T=42.0 W=36.45 H=18.5
+  [69] AUTO_SHAPE (1) name='Rounded Rectangle 85' L=42.65 T=42.0 W=36.45 H=3.0
+  [70] AUTO_SHAPE (1) name='Rectangle 86' L=43.41 T=42.62 W=0.76 H=1.8
+  [71] AUTO_SHAPE (1) name='Rounded Rectangle 87' L=44.63 T=42.57 W=3.36 H=1.9
+  [72] TEXT_BOX (17) name='TextBox 88' L=44.63 T=42.57 W=3.36 H=1.9
+      text: '5'
+  [73] PICTURE (13) name='Picture 89' L=75.7 T=42.41 W=2.2 H=2.2
+  [74] TEXT_BOX (17) name='TextBox 90' L=49.06 T=42.41 W=24.25 H=2.2
+      text: 'SYSTEM ARCHITECTURE'
+  [75] TEXT_BOX (17) name='TextBox 91' L=43.79 T=46.26 W=34.31 H=5.6
+      text: 'Detect anomalies in satellite telemetry data using hybrid AI models (LSTM + GRU). | Generate analysis reports in PDF and Excel formats. | Continual learning updates are applied only after administrato...'
+  [76] AUTO_SHAPE (1) name='Rounded Rectangle 93' L=42.65 T=61.5 W=36.45 H=18.5
+  [77] AUTO_SHAPE (1) name='Rounded Rectangle 94' L=42.65 T=61.5 W=36.45 H=3.0
+  [78] AUTO_SHAPE (1) name='Rectangle 95' L=43.41 T=62.11 W=0.76 H=1.8
+  [79] AUTO_SHAPE (1) name='Rounded Rectangle 96' L=44.63 T=62.06 W=3.36 H=1.9
+  [80] TEXT_BOX (17) name='TextBox 97' L=44.63 T=62.06 W=3.36 H=1.9
+      text: '6'
+  [81] PICTURE (13) name='Picture 98' L=75.7 T=61.91 W=2.2 H=2.2
+  [82] TEXT_BOX (17) name='TextBox 99' L=49.06 T=61.91 W=24.25 H=2.2
+      text: 'TOOLS  &  TECHNOLOGIES'
+  [83] AUTO_SHAPE (1) name='Rounded Rectangle 163' L=5.0 T=80.5 W=74.1 H=20.8
+  [84] AUTO_SHAPE (1) name='Rounded Rectangle 164' L=5.0 T=80.5 W=74.1 H=3.0
+  [85] AUTO_SHAPE (1) name='Rectangle 165' L=5.5 T=81.1 W=0.5 H=1.8
+  [86] AUTO_SHAPE (1) name='Rounded Rectangle 166' L=6.3 T=81.05 W=2.2 H=1.9
+  [87] TEXT_BOX (17) name='TextBox 167' L=6.3 T=81.05 W=2.2 H=1.9
+      text: '10'
+  [88] PICTURE (13) name='Picture 168' L=75.7 T=80.9 W=2.2 H=2.2
+  [89] TEXT_BOX (17) name='TextBox 169' L=9.2 T=80.9 W=66.1 H=2.2
+      text: 'EVALUATION  &  RESULTS'
+  [90] TEXT_BOX (17) name='TextBox 170' L=5.7 T=84.0 W=20.36 H=1.2
+      text: 'Performance Metrics  (best-F1)'
+  [91] AUTO_SHAPE (1) name='Rectangle 171' L=5.7 T=85.4 W=20.36 H=0.91
+  [92] TEXT_BOX (17) name='TextBox 172' L=6.2 T=85.4 W=11.2 H=0.91
+      text: 'F1-Score'
+  [93] TEXT_BOX (17) name='TextBox 173' L=16.9 T=85.4 W=8.14 H=0.91
+      text: '0.9493'
+  [94] AUTO_SHAPE (1) name='Rectangle 174' L=5.7 T=86.31 W=20.36 H=0.91
+  [95] TEXT_BOX (17) name='TextBox 175' L=6.2 T=86.31 W=11.2 H=0.91
+      text: 'Accuracy'
+  [96] TEXT_BOX (17) name='TextBox 176' L=16.9 T=86.31 W=8.14 H=0.91
+      text: '98.57%'
+  [97] AUTO_SHAPE (1) name='Rectangle 177' L=5.7 T=87.22 W=20.36 H=0.91
+  [98] TEXT_BOX (17) name='TextBox 178' L=6.2 T=87.22 W=11.2 H=0.91
+      text: 'Balanced Accuracy'
+  [99] TEXT_BOX (17) name='TextBox 179' L=16.9 T=87.22 W=8.14 H=0.91
+      text: '99.14%'
+  [100] AUTO_SHAPE (1) name='Rectangle 180' L=5.7 T=88.14 W=20.36 H=0.91
+  [101] TEXT_BOX (17) name='TextBox 181' L=6.2 T=88.14 W=11.2 H=0.91
+      text: 'Recall'
+  [102] TEXT_BOX (17) name='TextBox 182' L=16.9 T=88.14 W=8.14 H=0.91
+      text: '0.9991'
+  [103] AUTO_SHAPE (1) name='Rectangle 183' L=5.7 T=89.05 W=20.36 H=0.91
+  [104] TEXT_BOX (17) name='TextBox 184' L=6.2 T=89.05 W=11.2 H=0.91
+      text: 'Precision'
+  [105] TEXT_BOX (17) name='TextBox 185' L=16.9 T=89.05 W=8.14 H=0.91
+      text: '0.9043'
+  [106] AUTO_SHAPE (1) name='Rectangle 186' L=5.7 T=89.96 W=20.36 H=0.91
+  [107] TEXT_BOX (17) name='TextBox 187' L=6.2 T=89.96 W=11.2 H=0.91
+      text: 'FAR'
+  [108] TEXT_BOX (17) name='TextBox 188' L=16.9 T=89.96 W=8.14 H=0.91
+      text: '1.63%'
+  [109] AUTO_SHAPE (1) name='Rectangle 189' L=5.7 T=90.88 W=20.36 H=0.91
+  [110] TEXT_BOX (17) name='TextBox 190' L=6.2 T=90.88 W=11.2 H=0.91
+      text: 'ROC-AUC'
+  [111] TEXT_BOX (17) name='TextBox 191' L=16.9 T=90.88 W=8.14 H=0.91
+      text: '0.9958'
+  [112] AUTO_SHAPE (1) name='Rectangle 192' L=5.7 T=91.79 W=20.36 H=0.91
+  [113] TEXT_BOX (17) name='TextBox 193' L=6.2 T=91.79 W=11.2 H=0.91
+      text: 'PR-AUC'
+  [114] TEXT_BOX (17) name='TextBox 194' L=16.9 T=91.79 W=8.14 H=0.91
+      text: '0.9561'
+  [115] TEXT_BOX (17) name='TextBox 195' L=5.7 T=93.1 W=20.36 H=2.4
+      text: 'Test set: 72 files  •  226,623 normal windows | Attacks: Drift, Freeze, Noise, Spike | Rule: strict 10% timestep-level'
+  [116] PICTURE (13) name='Picture 196' L=26.86 T=84.0 W=11.89 H=6.88
+  [117] PICTURE (13) name='Picture 197' L=26.86 T=91.28 W=9.04 H=4.22
+  [118] PICTURE (13) name='Picture 198' L=39.54 T=84.0 W=38.86 H=16.79
+  [119] TEXT_BOX (17) name='TextBox 199' L=5.7 T=95.5 W=33.05 H=1.2
+      text: 'KEY FINDINGS'
+  [120] TEXT_BOX (17) name='TextBox 200' L=5.7 T=96.8 W=33.05 H=4.0
+      text: '▪  Near-perfect separation: normal vs. attacked windows. | ▪  ROC-AUC = 0.996 confirms robust threshold-free ranking. | ▪  Best-F1 point: recall ≈ 0.999 at FAR = 1.63%. | ▪  Continual learning preserv...'
+  [121] AUTO_SHAPE (1) name='Rounded Rectangle 201' L=5.0 T=101.3 W=31.3 H=12.6
+  [122] AUTO_SHAPE (1) name='Rounded Rectangle 202' L=5.0 T=101.3 W=31.3 H=3.0
+  [123] AUTO_SHAPE (1) name='Rectangle 203' L=5.5 T=101.9 W=0.5 H=1.8
+  [124] AUTO_SHAPE (1) name='Rounded Rectangle 204' L=6.3 T=101.85 W=2.2 H=1.9
+  [125] TEXT_BOX (17) name='TextBox 205' L=6.3 T=101.85 W=2.2 H=1.9
+      text: '11'
+  [126] PICTURE (13) name='Picture 206' L=32.9 T=101.7 W=2.2 H=2.2
+  [127] TEXT_BOX (17) name='TextBox 207' L=9.2 T=101.7 W=23.3 H=2.2
+      text: 'CONCLUSION'
+  [128] AUTO_SHAPE (1) name='Rounded Rectangle 208' L=5.7 T=104.8 W=29.9 H=2.6
+  [129] TEXT_BOX (17) name='TextBox 209' L=5.7 T=104.8 W=29.9 H=2.6
+      text: 'F1 = 0.949   •   ROC-AUC = 0.996   •   FAR ≈ 1.63%'
+  [130] TEXT_BOX (17) name='TextBox 210' L=5.7 T=107.7 W=29.9 H=6.0
+      text: '▪  CyberSatDetect achieves F1 = 0.949, ROC-AUC = 0.996, FAR ≈ 1.63% on a 4-attack benchmark. | ▪  The hybrid LSTM-GRU model trained on normal-only data detects Drift, Freeze, Noise, and Spike attacks ...'
+  [131] AUTO_SHAPE (1) name='Rounded Rectangle 211' L=37.3 T=101.3 W=31.3 H=12.6
+  [132] AUTO_SHAPE (1) name='Rounded Rectangle 212' L=37.3 T=101.3 W=31.3 H=3.0
+  [133] AUTO_SHAPE (1) name='Rectangle 213' L=37.8 T=101.9 W=0.5 H=1.8
+  [134] AUTO_SHAPE (1) name='Rounded Rectangle 214' L=38.6 T=101.85 W=2.2 H=1.9
+  [135] TEXT_BOX (17) name='TextBox 215' L=38.6 T=101.85 W=2.2 H=1.9
+      text: '12'
+  [136] PICTURE (13) name='Picture 216' L=65.2 T=101.7 W=2.2 H=2.2
+  [137] TEXT_BOX (17) name='TextBox 217' L=41.5 T=101.7 W=23.3 H=2.2
+      text: 'FUTURE WORK'
+  [138] TEXT_BOX (17) name='TextBox 218' L=38.0 T=104.8 W=29.9 H=8.6
+      text: '▪  Multi-channel telemetry support | ▪  Live operational evaluation on satellite missions | ▪  Adaptive threshold policy that tracks distribution drift | ▪  Compound attack scenarios  (Drift+Spike, Pa...'
+  [139] AUTO_SHAPE (1) name='Rounded Rectangle 219' L=69.6 T=101.3 W=9.5 H=12.6
+  [140] AUTO_SHAPE (1) name='Rounded Rectangle 220' L=69.6 T=101.3 W=9.5 H=2.3
+  [141] TEXT_BOX (17) name='TextBox 221' L=69.6 T=101.7 W=9.5 H=1.5
+      text: 'SCAN FOR PROJECT INFO'
+  [142] PICTURE (13) name='Picture 222' L=70.55 T=104.0 W=7.6 H=7.6
+  [143] TEXT_BOX (17) name='TextBox 223' L=70.0 T=111.8 W=8.7 H=1.5
+      text: 'CyberSatDetect'
+  [144] PICTURE (13) name='Picture 229' L=67.2 T=7.15 W=8.9 H=8.9
+  [145] PICTURE (13) name='Picture 232' L=5.05 T=7.79 W=14.0 H=9.33
+  [146] PICTURE (13) name='Picture 252' L=50.9 T=28.58 W=19.95 H=11.51
+  [147] TEXT_BOX (17) name='TextBox 253' L=42.61 T=26.26 W=35.42 H=1.46
+      text: 'Hybrid Approach: Waterfall–Iterative Methodology'
+  [148] TEXT_BOX (17) name='TextBox 254' L=43.35 T=64.71 W=14.94 H=1.64
+      text: 'AI & Data Processing'
+  [149] TEXT_BOX (17) name='TextBox 257' L=65.13 T=69.47 W=13.97 H=1.64
+      text: 'Backend & API'
+  [150] TEXT_BOX (17) name='TextBox 258' L=43.35 T=69.46 W=15.84 H=1.64
+      text: 'Frontend & Visualization'
+  [151] TEXT_BOX (17) name='TextBox 259' L=63.81 T=74.36 W=15.29 H=1.64
+      text: 'Database & Storage'
+  [152] TEXT_BOX (17) name='TextBox 260' L=43.44 T=74.36 W=18.92 H=2.56
+      text: 'Security & Authentication | '
+  [153] TEXT_BOX (17) name='TextBox 261' L=64.78 T=65.09 W=14.32 H=1.28
+      text: 'Development Tools'
+  [154] PICTURE (13) name='Picture 275' L=43.09 T=67.08 W=10.75 H=1.74
+  [155] PICTURE (13) name='Picture 277' L=66.23 T=71.87 W=4.86 H=2.06
+  [156] PICTURE (13) name='Picture 279' L=45.34 T=71.97 W=6.41 H=1.73
+  [157] PICTURE (13) name='Picture 288' L=62.1 T=67.01 W=10.57 H=2.08
+  [158] PICTURE (13) name='Picture 290' L=46.09 T=76.72 W=5.38 H=2.28
+  [159] PICTURE (13) name='Picture 292' L=65.61 T=76.81 W=5.8 H=2.51
+  [160] PICTURE (13) name='Picture 294' L=49.74 T=50.2 W=22.27 H=9.06
+  [161] AUTO_SHAPE (1) name='Rectangle 4' L=0.0 T=0.0 W=84.1 H=0.0
+      text: ' | Detect anomalies in satellite telemetry data using hybrid AI models (LSTM + GRU).  | Generate analysis reports in PDF and Excel formats.  | Continual learning updates are applied only after adminis...'

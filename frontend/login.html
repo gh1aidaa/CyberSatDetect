@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CyberSatDetect | Login</title>
+
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+
+  <link rel="stylesheet" href="login.css" />
+</head>
+
+<body>
+
+  <!-- 🌌 Space background -->
+  <div id="canvas_container"></div>
+
+  <main class="login-page">
+    <div class="login-card">
+
+      <!-- BRAND -->
+      <div class="brand">
+        <h1>CyberSatDetect</h1>
+        <p>Secure gateway to satellite anomaly detection console.</p>
+      </div>
+
+      <div id="loginForm" autocomplete="off">
+
+        <!-- EMAIL -->
+        <div class="field">
+          <label for="username">Email</label>
+          <input id="username" type="email" required />
+        </div>
+
+        <!-- PASSWORD -->
+        <div class="field">
+          <label for="password">Password</label>
+          <input id="password" type="password" required />
+        </div>
+
+        <!-- LOGIN BUTTON -->
+        <div class="actions">
+          <button type="button" id="loginBtn" class="primary-btn">
+            Login
+          </button>
+        </div>
+
+        <!-- LINKS -->
+        <div class="links">
+          <a href="forgot-password.html">Forgot password?</a>
+          <span class="divider">•</span>
+          <a href="signup.html">Create account</a>
+        </div>
+
+        <!-- MESSAGE -->
+        <p id="message" class="message"></p>
+
+      </div>
+
+      <!-- FOOTER -->
+      <footer class="login-footer">
+        <span>Max 5 attempts. Account will be temporarily locked for 15 minutes on repeated failures.</span>
+      </footer>
+
+    </div>
+  </main>
+
+  <!-- 🌌 Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128/examples/js/controls/OrbitControls.js"></script>
+
+  <!-- JS -->
+  <script src="./login.js?v=20260501b"></script>
+
+</body>
+</html>

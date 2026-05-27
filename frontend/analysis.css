@@ -1,0 +1,275 @@
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Tahoma, sans-serif;
+  background: transparent;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+#canvas_container {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* NAVBAR (نفس التنسيق السابق) */
+.navbar {
+  position: relative;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 40px;
+  background: rgba(9,16,32,0.92);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.6);
+}
+
+.logo span {
+  color: #00BFFF;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.nav-links {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  font-size: 0.88rem;
+}
+
+.nav-links a {
+  color: #D9D9D9;
+  text-decoration: none;
+  padding: 5px 8px;
+  border-radius: 999px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.nav-links a:hover {
+  background: rgba(0,191,255,0.15);
+  color: #ffffff;
+}
+
+.nav-links a.active {
+  background: rgba(0,191,255,0.25);
+  color: #ffffff;
+}
+
+.nav-links a.logout {
+  border: 1px solid rgba(255,255,255,0.4);
+}
+
+/* PAGE */
+.analysis-page {
+  position: relative;
+  z-index: 10;
+  padding: 70px 50px 40px;
+}
+
+.panel {
+  background: rgba(18,35,68,0.86);
+  border-radius: 16px;
+  padding: 18px 20px;
+  box-shadow: 0 0 16px rgba(0,191,255,0.12);
+  backdrop-filter: blur(4px);
+}
+
+/* HEADER */
+.header-strip {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 18px;
+}
+
+.header-strip h1 {
+  margin: 0;
+  font-size: 1.45rem;
+}
+
+.subtitle {
+  margin: 3px 0 0;
+  font-size: 0.9rem;
+  color: #BFD6E8;
+}
+
+.header-meta {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 8px;
+  font-size: 0.8rem;
+}
+
+.header-meta .label {
+  display: block;
+  color: #BFD6E8;
+  margin-bottom: 2px;
+}
+
+.header-meta .value {
+  font-weight: 700;
+}
+
+.filter-box label {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+}
+
+/* GRID */
+.main-grid {
+  display: grid;
+  grid-template-columns: minmax(0,1.35fr) minmax(0,1.1fr);
+  gap: 16px;
+}
+
+.left-col,
+.right-col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* TABLE */
+.table-wrap {
+  margin-top: 10px;
+  max-height: 280px;
+  overflow: auto;
+}
+
+.seg-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.84rem;
+  color: #EAF6FF;
+}
+
+.seg-table thead th {
+  background: rgba(15,30,58,0.95);
+  padding: 8px 10px;
+  text-align: left;
+  position: sticky;
+  top: 0;
+}
+
+.seg-table tbody td {
+  padding: 7px 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.seg-table button {
+  padding: 3px 7px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.78rem;
+  font-weight: 600;
+  background: rgba(0,191,255,0.9);
+  color: #00121c;
+}
+
+.note {
+  margin-top: 8px;
+  font-size: 0.8rem;
+  color: #BFD6E8;
+}
+
+/* CHART + METRICS */
+.chart-panel {
+  min-height: 220px;
+}
+
+.chart-panel canvas#segChart {
+  display: block;
+  width: 100% !important;
+  height: 240px !important;
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.hint {
+  font-size: 0.8rem;
+  color: #BFD6E8;
+}
+
+.metrics-panel h3 {
+  margin-top: 0;
+}
+
+.metrics-list {
+  list-style: none;
+  padding: 0;
+  margin: 6px 0 0;
+  font-size: 0.84rem;
+}
+
+.metrics-list li {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  padding: 4px 0;
+}
+
+.metrics-list span {
+  color: #BFD6E8;
+}
+
+.metrics-list strong {
+  font-weight: 700;
+}
+
+.primary-btn {
+  margin-top: 10px;
+  background: #00BFFF;
+  color: #00101e;
+  border-radius: 10px;
+  border: none;
+  padding: 8px 14px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+.primary-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1100px) {
+  .analysis-page {
+    padding: 70px 18px 26px;
+  }
+  .main-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding: 8px 14px;
+  }
+  .nav-links {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .header-strip {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .header-meta {
+    grid-template-columns: 1fr;
+  }
+}

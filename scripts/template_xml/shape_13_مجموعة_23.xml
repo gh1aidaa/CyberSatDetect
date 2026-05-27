@@ -1,0 +1,140 @@
+<p:grpSp xmlns:p="http://schemas.openxmlformats.org/presentationml/2006/main" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">
+  <p:nvGrpSpPr>
+    <p:cNvPr id="24" name="مجموعة 23">
+      <a:extLst>
+        <a:ext uri="{FF2B5EF4-FFF2-40B4-BE49-F238E27FC236}">
+          <a16:creationId xmlns:a16="http://schemas.microsoft.com/office/drawing/2014/main" id="{412F7B54-3EDE-72CF-9DD1-CF9C6939F705}"/>
+        </a:ext>
+      </a:extLst>
+    </p:cNvPr>
+    <p:cNvGrpSpPr/>
+    <p:nvPr/>
+  </p:nvGrpSpPr>
+  <p:grpSpPr>
+    <a:xfrm>
+      <a:off x="21337879" y="17090653"/>
+      <a:ext cx="8146670" cy="1069786"/>
+      <a:chOff x="22923690" y="12936502"/>
+      <a:chExt cx="8146670" cy="1069786"/>
+    </a:xfrm>
+  </p:grpSpPr>
+  <p:sp>
+    <p:nvSpPr>
+      <p:cNvPr id="25" name="مستطيل 24">
+        <a:extLst>
+          <a:ext uri="{FF2B5EF4-FFF2-40B4-BE49-F238E27FC236}">
+            <a16:creationId xmlns:a16="http://schemas.microsoft.com/office/drawing/2014/main" id="{CFCA9E97-B2C1-879F-050F-5FE0863E02E2}"/>
+          </a:ext>
+        </a:extLst>
+      </p:cNvPr>
+      <p:cNvSpPr/>
+      <p:nvPr/>
+    </p:nvSpPr>
+    <p:spPr>
+      <a:xfrm>
+        <a:off x="22977476" y="12936502"/>
+        <a:ext cx="8039100" cy="993586"/>
+      </a:xfrm>
+      <a:prstGeom prst="rect">
+        <a:avLst/>
+      </a:prstGeom>
+      <a:gradFill>
+        <a:gsLst>
+          <a:gs pos="0">
+            <a:srgbClr val="24737A"/>
+          </a:gs>
+          <a:gs pos="100000">
+            <a:srgbClr val="2A3F4A"/>
+          </a:gs>
+        </a:gsLst>
+        <a:lin ang="9600000" scaled="0"/>
+      </a:gradFill>
+      <a:ln>
+        <a:noFill/>
+      </a:ln>
+    </p:spPr>
+    <p:style>
+      <a:lnRef idx="2">
+        <a:schemeClr val="accent1">
+          <a:shade val="15000"/>
+        </a:schemeClr>
+      </a:lnRef>
+      <a:fillRef idx="1">
+        <a:schemeClr val="accent1"/>
+      </a:fillRef>
+      <a:effectRef idx="0">
+        <a:schemeClr val="accent1"/>
+      </a:effectRef>
+      <a:fontRef idx="minor">
+        <a:schemeClr val="lt1"/>
+      </a:fontRef>
+    </p:style>
+    <p:txBody>
+      <a:bodyPr rtlCol="1" anchor="ctr"/>
+      <a:lstStyle/>
+      <a:p>
+        <a:pPr marL="0" algn="ctr" defTabSz="457200" rtl="1" eaLnBrk="1" latinLnBrk="0" hangingPunct="1"/>
+        <a:endParaRPr lang="ar-SA"/>
+      </a:p>
+    </p:txBody>
+  </p:sp>
+  <p:sp>
+    <p:nvSpPr>
+      <p:cNvPr id="26" name="عنوان 5">
+        <a:extLst>
+          <a:ext uri="{FF2B5EF4-FFF2-40B4-BE49-F238E27FC236}">
+            <a16:creationId xmlns:a16="http://schemas.microsoft.com/office/drawing/2014/main" id="{9F2C6DF2-6590-FDF3-B79B-036C9128A643}"/>
+          </a:ext>
+        </a:extLst>
+      </p:cNvPr>
+      <p:cNvSpPr txBox="1">
+        <a:spLocks/>
+      </p:cNvSpPr>
+      <p:nvPr/>
+    </p:nvSpPr>
+    <p:spPr>
+      <a:xfrm>
+        <a:off x="22923690" y="13111155"/>
+        <a:ext cx="8146670" cy="895133"/>
+      </a:xfrm>
+      <a:prstGeom prst="rect">
+        <a:avLst/>
+      </a:prstGeom>
+    </p:spPr>
+    <p:txBody>
+      <a:bodyPr/>
+      <a:lstStyle>
+        <a:lvl1pPr algn="l" defTabSz="685800" rtl="1" eaLnBrk="1" latinLnBrk="0" hangingPunct="1">
+          <a:lnSpc>
+            <a:spcPct val="90000"/>
+          </a:lnSpc>
+          <a:spcBef>
+            <a:spcPct val="0"/>
+          </a:spcBef>
+          <a:buNone/>
+          <a:defRPr sz="3300" kern="1200">
+            <a:solidFill>
+              <a:schemeClr val="tx1"/>
+            </a:solidFill>
+            <a:latin typeface="+mj-lt"/>
+            <a:ea typeface="+mj-ea"/>
+            <a:cs typeface="+mj-cs"/>
+          </a:defRPr>
+        </a:lvl1pPr>
+      </a:lstStyle>
+      <a:p>
+        <a:pPr algn="ctr"/>
+        <a:r>
+          <a:rPr lang="ar-SA" sz="4000" b="1" dirty="0">
+            <a:solidFill>
+              <a:schemeClr val="bg1"/>
+            </a:solidFill>
+            <a:latin typeface="DIN Next LT Arabic" panose="020B0503020203050203" pitchFamily="34" charset="-78"/>
+            <a:cs typeface="DIN Next LT Arabic" panose="020B0503020203050203" pitchFamily="34" charset="-78"/>
+          </a:rPr>
+          <a:t>اسم الكلية</a:t>
+        </a:r>
+      </a:p>
+    </p:txBody>
+  </p:sp>
+</p:grpSp>

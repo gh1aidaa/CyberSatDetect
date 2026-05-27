@@ -1,0 +1,427 @@
+
+
+===== PAGE 11  (matched 2 keywords) =====
+6.7.3 Model Registry and Approval Workflow . . . . . . . . . 107
+6.7.4 Automated Backups . . . . . . . . . . . . . . . . . . . 108
+7 Testing, Validation, and Evaluation 109
+7.1 Test Phase . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 109
+7.1.1 Mission Overview Dashboard (Pre-Upload) . . . . . . . 109
+7.1.2 Telemetry Data Upload . . . . . . . . . . . . . . . . . . 110
+7.1.3 Anomaly Detection Results . . . . . . . . . . . . . . . 110
+7.1.4 Reporting Workflow and Exported Results . . . . . . . 112
+7.1.5 Mission Overview Dashboard (Post-Analysis) . . . . . 114
+7.1.6 Continual Learning Workflow . . . . . . . . . . . . . . 114
+7.2 Validation Phase . . . . . . . . . . . . . . . . . . . . . . . . . 115
+7.3 Evaluation Phase . . . . . . . . . . . . . . . . . . . . . . . . . 116
+7.3.1 Dataset Composition . . . . . . . . . . . . . . . . . . . 116
+7.3.2 Overall Discriminative Performance . . . . . . . . . . . 117
+7.3.3 Score Distribution . . . . . . . . . . . . . . . . . . . . 119
+7.3.4 Threshold Sensitivity Analysis . . . . . . . . . . . . . . 120
+7.3.5 Confusion Matrices . . . . . . . . . . . . . . . . . . . . 122
+7.3.6 Per-Attack-Type Performance . . . . . . . . . . . . . . 123
+x
+
+===== PAGE 14  (matched 2 keywords) =====
+7.2 Window counts in the four-attack evaluation set. . . . . . . . . 117
+7.3 Threshold-independent performance . . . . . . . . . . . . . . . 117
+7.4 Performance at each operating threshold. . . . . . . . . . . . . 121
+7.5 Per-attack-type performance atp 99 and Best-F1 thresholds. . . 123
+xiii
+
+===== PAGE 18  (matched 2 keywords) =====
+7.7 ROC and Precision–Recall curves . . . . . . . . . . . . . . . . 118
+7.8 Score distributions: normal test vs. attacked. . . . . . . . . . . 119
+7.9 Threshold sensitivity analysis across different evaluation metrics. 120
+7.10 Confusion matrices for the most operationally relevant thresholds.122
+7.11 Per-attack F 1 scores at the two primary operating points. . . . 124
+xvii
+
+===== PAGE 22  (matched 2 keywords) =====
+The objectives of the system are as follows:
+• To design and implement an anomaly detection model that utilizes
+appropriate AI techniques to analyze telemetry data and identify
+abnormal behavior.
+• To establish a continual learning process using fine-tuning that enables
+the model to adapt to new data and maintain a high level of detection
+accuracy over time.
+• To evaluate the system using metrics that reflect the model’s behavior
+under both normal and non-normal conditions, including sensitivity
+to deviations, stability in normal telemetry, and the false alarm rate
+(FAR).
+• To validate the effectiveness of the system using real, unlabeled telemetry
+data, supported by synthetically modified scenarios that introduce
+abnormal behavior for testing and evaluation.
+• To enhance the system’s cybersecurity posture by applying security
+practices and policies that support data protection, access control, and
+the integrity of system components during operation.
+1.3 System Contribution
+The proposed system contributes to the advancement of intelligent cybersecurity
+solutions for satellite operations. The novelty of this work lies in combining
+AI-based anomaly detection with continual learning in a single adaptive system
+tailored to satellite environments. Unlike traditional rule-based systems, the
+proposed approach evolves over time, learning from operational feedback and
+detected anomalies to enhance resilience against emerging threats.
+3
+
+===== PAGE 34  (matched 2 keywords) =====
+More specialized detection architectures have also emerged. Wang et al.
+[40], introduced a two stage approach combining a DDMN pre-cleaning filter
+with an LSTM forecasting model. Applied to over 1.3 million samples of
+real spacecraft telemetry collected over 2.5 years, their system achieved an
+F1-score of 0.995, demonstrating the importance of robust preprocessing.
+However, this model remains static and does not adapt to mission drift or
+new operational patterns.
+Zhan et al. [ 41], used a Seq2Seq GRU Autoencoder that identifies anomalies
+using reconstruction error, computed as:
+εt =x t −ˆxt (2.1)
+where larger deviations indicate abnormal behavior. GRU networks being
+computationally lighter than LSTMs offer strong capability for learning
+long-range dependencies and showed resilience to noise, missing data, and
+irregular sampling, conditions commonly encountered in satellite telemetry.
+One of the most influential contributions in the field is NASA’s Telemanom
+framework by Hundman et al. [ 42], Telemanom uses stacked LSTM layers
+to forecast expected telemetry behavior and applies a dynamic thresholding
+method to detect both point anomalies and contextual deviations. Tested on
+NASA SMAP and MSL datasets, Telemanom achieved the highest F0.5 score
+among compared methods and established a baseline for prediction-based
+anomaly detection. Its influence extends to many subsequent works, including
+hybrid LSTM/GRU systems and adaptive-learning extensions.
+The use of reconstruction-based objectives has further evolved to address the
+instability of traditional detectors in noisy environments. By establishing
+a behavioral baseline through an LSTM Autoencoder, anomalies can be
+effectively identified by evaluating the reconstruction deviation between the
+observed telemetryXand its reconstructed counterpart ˆX[43].
+The effectiveness of hybrid architectures has been further demonstrated in
+securing satellite-based positioning signals. Recent evaluations of sequential
+LSTM-GRU hybrid models have shown superior performance in detecting
+complex anomalies, such as GPS spoofing attacks, compared to Single-layer
+[44]. By integrating both LSTM and GRU layers, the system can achieve high
+15
+
+===== PAGE 85  (matched 2 keywords) =====
+1. Static Thresholding:Used as an initial baseline but lacked adaptability
+to non-stationary signals.
+2. Signal Smoothing:Introduced via a Moving Average filter to suppress
+high-frequency fluctuations and noise.
+3. Point Adjustment:Applied as a post-processing strategy to align
+model evaluations with operational anomaly events.
+While these improvements enabled the model to achieve a significantF1-score
+of 87.40%on NASA streams, the transition toward the European Space
+Agency (ESA) telemetry revealed new challenges. The application to ESA data
+required significant modifications to the preprocessing pipeline, particularly
+in handling zero-variance signals and heterogeneous sampling rates. These
+requirements highlighted the need for a more robust quality-control layer
+and a more adaptive architecture that could bridge the gap between different
+space agency standards. Consequently, the project evolved intoPipeline 4,
+which integrated a dual-head (Reconstruction + Prediction) design and an
+enhanced data-cleaning workflow to provide a unified solution for both NASA
+and ESA missions.
+5.1.4 Pipeline 4
+Data Cleaning
+The data cleaning stage is designed as a critical preprocessing pipeline to
+ensure high-quality input for both model training and real-time inference.
+This stage consists of two main components: offline dataset construction and
+cleaning, and inference-time preprocessing.
+This dual-stage design ensures that the model is trained on reliable data while
+remaining robust to variability in real-world telemetry inputs.
+66
+
+===== PAGE 95  (matched 4 keywords) =====
+For the validation dataset, the score distribution statistics were µ = 0.011381
+andσ= 0.067322.
+In addition to the statistical thresholds, an optimal operating threshold was
+identified experimentally by maximising the F1-score over the evaluation
+score distribution.
+T able 5.2:Calibrated detection thresholds.
+Threshold Policy Value
+p99 0.202873
+p99.5 0.299654
+p99.7 0.569635
+3-sigma 0.213348
+Best-F1 0.0509
+Lower thresholds increase sensitivity to anomalies at the cost of higher false
+alarm rates, while higher thresholds reduce false positives at the risk of missing
+subtle anomalies. Experimental evaluation demonstrated that different
+threshold selection policies provide different trade-offs between anomaly
+detection sensitivity and false alarm control under the strict evaluation
+protocol.
+Figure 5.6 compares the performance of different threshold selection policies
+under the strict evaluation protocol. The results illustrate how threshold
+selection affects classification accuracy, recall, F1-score, and false alarm rate
+across different operating conditions.
+Figure 5.6:Threshold performance comparison.
+76
+
+===== PAGE 134  (matched 2 keywords) =====
+(a)Normal telemetry
+review.
+(b)Anomaly review
+interface.
+(c)Approved datasets.
+(d)Training and registry status.
+ (e)Model registry versions.
+Figure 7.6:Continual learning administration workflow.
+7.2 Validation Phase
+Validation was conducted using 71 normal telemetry files, all of which were
+processed successfully without failures. The objective of this phase was to
+analyse the anomaly-score distribution under normal operating conditions
+and calibrate stable detection thresholds prior to the evaluation stage.
+Telemetry signals were segmented into sliding windows of 100 time steps with
+a stride of 50, resulting in a total of 321,142 validation windows. Each window
+had an input dimension of 100×1.
+Table 7.1 summarises the anomaly-score distribution obtained from normal
+telemetry data only.
+The results indicate that the majority of normal telemetry windows produced
+very low anomaly scores, with a mean score of 0.003835 and a relatively small
+standard deviation. This behaviour demonstrates stable reconstruction and
+prediction performance under normal operating conditions.
+Detection thresholds were subsequently calibrated using statistics derived
+from normal training data, where these thresholds represent the decision
+boundaries used to distinguish normal telemetry behaviour from anomalous
+115
+
+===== PAGE 136  (matched 4 keywords) =====
+synthetic fault types:drift,freeze,noise, andspike. Table 7.2 gives window
+counts per class.
+T able 7.2:Window counts in the four-attack evaluation set.
+Partition Windows
+Normal (test) 226,623
+Attacked (4 types, total) 182,323
+drift 12,123
+freeze 43,136
+noise 63,431
+spike 63,633
+Anomalous windows (y=1) 54,712
+Normal inside attacked files 127,611
+Neg. : Pos. imbalance ratio 6.47 : 1
+The resulting imbalance ratio of 6.47 : 1 reflects realistic operational telemetry
+environments where anomalous spacecraft behaviour represents only a small
+fraction of the observed data stream. Consequently, evaluation metrics such as
+PR-AUC, Recall, and F1 become particularly important because conventional
+accuracy alone may provide misleading performance estimates under heavily
+skewed distributions.
+7.3.2 Overall Discriminative Performance
+Table 7.3 reports the threshold-independent performance of the detector.
+T able 7.3:Threshold-independent performance .
+Metric Value
+ROC-AUC 0.9958
+PR-AUC 0.9562
+Best F1 (500-pt sweep) 0.9493 atτ= 0.0509
+The obtained results demonstrate strong discriminative capability across all
+117
+
+===== PAGE 137  (matched 5 keywords) =====
+evaluated attack scenarios. The very high ROC-AUC score indicates that the
+detector can effectively separate nominal and anomalous telemetry windows
+across a wide range of thresholds. Similarly, the high PR-AUC value confirms
+that the detector maintains stable precision and recall performance despite
+the severe imbalance between normal and anomalous samples.
+The ROC curve in Figure 7.7 rises steeply to near-perfect TPR at a false-positive
+rate below 0.02, confirming strong class separation. The precision–recall curve
+maintains precision above 0.95 for recall values up to ≈ 0.78, with a PR-AUC
+of 0.9562 reflecting robustness under severe class imbalance.
+In practical terms, these results indicate that the proposed model learns a
+stable representation of normal telemetry behaviour while remaining highly
+sensitive to abnormal temporal patterns. The strong separation between
+normal and anomalous score distributions suggests that the combined reconstruction,
+prediction, and gradient-based objectives successfully capture both spatial
+and temporal inconsistencies within the telemetry sequences.
+(a) ROC Curve
+ (b) Precision–Recall Curve
+Figure 7.7:ROC and Precision–Recall curves
+The ROC and PR curves further demonstrate that the detector maintains
+strong performance stability across multiple operating regions rather than
+depending on a narrowly tuned threshold. This characteristic is particularly
+important in operational spacecraft monitoring systems, where threshold
+requirements may vary depending on mission criticality and acceptable
+false-alarm tolerance.
+118
+
+===== PAGE 138  (matched 3 keywords) =====
+7.3.3 Score Distribution
+The anomaly score distribution provides additional insight into the internal
+behaviour of the detector. In an effective anomaly detection system, normal
+telemetry windows should produce compact low-valued score distributions,
+while anomalous windows should generate clearly separable higher-valued
+scores.
+Figure 7.8 plots the score densities for normal and attacked windows. Normal
+scores are concentrated near zero (mean ≈ 0.004), while attacked windows
+produce a heavy right tail—demonstrating clear separability at any threshold
+in the [0.05,0.3] range.
+This behaviour confirms that the learned latent representation remains stable
+for nominal spacecraft behaviour while responding strongly to abnormal
+temporal deviations. The heavy right-tail observed for attacked windows
+also explains the strong threshold flexibility achieved during evaluation, since
+multiple operating thresholds can separate the two distributions with relatively
+low overlap.
+Figure 7.8:Score distributions: normal test vs. attacked.
+The score distribution additionally demonstrates that the detector produces
+relatively compact anomaly-score behaviour for nominal telemetry windows.
+Such stability is important in practical deployment environments because
+119
+
+===== PAGE 139  (matched 5 keywords) =====
+unstable normal-score behaviour may increase false-alarm generation and
+reduce operational reliability over long monitoring periods.
+7.3.4 Threshold Sensitivity Analysis
+Threshold selection represents a critical operational component in anomaly
+detection systems because it directly controls the balance between anomaly
+sensitivity and false-alarm generation. Lower thresholds typically maximise
+anomaly recall but increase false positives, whereas stricter thresholds reduce
+false alarms at the cost of potentially missing subtle anomalies.
+Figures 7.9 and Table 7.4 characterise the precision–recall–FAR trade-off
+across the six calibrated thresholds plus the sweep optimum.
+(a) F1 Score
+ (b) Recall and FAR
+(c) Balanced Accuracy
+Figure 7.9:Threshold sensitivity analysis across different evaluation metrics.
+120
+
+===== PAGE 140  (matched 3 keywords) =====
+T able 7.4:Performance at each operating threshold.
+ThresholdτAcc. Prec. Recall FAR F 1 Bal.Acc.
+p95 0.00727 0.950 0.729 1.000 5.73% 0.843 0.971
+p97 0.01219 0.972 0.827 1.000 3.23% 0.905 0.984
+p99 0.20287 0.963 0.961 0.754 0.47% 0.845 0.875
+p99.5 0.29965 0.951 0.968 0.654 0.33% 0.781 0.826
+p99.7 0.56963 0.917 0.972 0.394 0.17% 0.561 0.696
+3σ0.21335 0.957 0.961 0.707 0.44% 0.815 0.851
+Best-F1 0.05090 0.986 0.904 0.999 1.63%0.9490.991
+The threshold analysis demonstrates a clear operational trade-off between
+detection sensitivity and false-alarm reduction. Lower thresholds such as p95
+and p97 achieve perfect recall, meaning that nearly all anomalous telemetry
+windows are successfully detected. However, this increased sensitivity also
+leads to higher false-alarm rates because a larger fraction of normal telemetry
+windows exceed the decision boundary.
+The p97 threshold achieves perfect recall (1.000) at a FAR of 3 .23% and
+F1 = 0.905, making it suitable for high-sensitivity deployments where missing
+anomalies is considered unacceptable.
+Conversely, stricter thresholds such as p99 and p99.5 significantly reduce false
+positives, making them more suitable for operational deployment scenarios
+where excessive alert generation may overwhelm monitoring systems or human
+operators.
+The p99 threshold reduces FAR to 0 .47% while retaining recall of 0 .754 and
+F1 = 0.845, offering a conservative operating point appropriate for operational
+environments where false alarms carry high cost.
+The sweep optimum ( τ = 0.0509) maximises F 1 at 0.9493 and simultaneously
+achieves balanced accuracy of 0 .991, confirming the existence of a practically
+reachable optimum between sensitivity and specificity.
+The threshold analysis also demonstrates that the proposed detector maintains
+121
+
+===== PAGE 141  (matched 4 keywords) =====
+(a) Best-F1 (τ= 0.0509)
+ (b)p 99 (τ= 0.2029)
+Figure 7.10:Confusion matrices for the most operationally relevant thresholds.
+relatively stable behaviour across multiple operating regions rather than
+relying on a single narrowly tuned threshold. This characteristic is important
+for real-world deployment scenarios because operational constraints may vary
+significantly depending on mission requirements, telemetry criticality, and
+acceptable false-alarm tolerance.
+Based on the evaluation results, the p99 threshold was selected as the primary
+operational threshold for the deployed system. Although the Best-F1 threshold
+achieved the highest overall detection performance, the p99 threshold provided
+a more conservative operating point with substantially lower false-alarm
+rates, making it more suitable for practical real-world telemetry monitoring
+environments.
+7.3.5 Confusion Matrices
+Confusion matrices provide a more detailed view of detector behaviour by
+explicitly visualising the relationship between correctly detected anomalies,
+false alarms, and missed attacks under different operating thresholds.
+Figures 7.10 present confusion matrices for the three most operationally
+relevant thresholds.
+122
+
+===== PAGE 142  (matched 2 keywords) =====
+The confusion matrices clearly illustrate the operational trade-off introduced
+by threshold selection. At the Best-F 1 threshold, the detector produces
+extremely few false negatives, indicating strong anomaly sensitivity across
+all attack categories. This behaviour is desirable in proactive monitoring
+systems where early anomaly detection is prioritised over strict false-alarm
+suppression.
+At stricter thresholds such as p99 and p99.5, the number of false positives
+decreases substantially, demonstrating improved operational conservativeness.
+However, the detector simultaneously begins to miss a larger fraction of
+weaker anomalies, particularly gradual attacks such as drift. This behaviour
+highlights the practical balance between operational stability and anomaly
+sensitivity.
+7.3.6 Per-Attack-Type Performance
+Different telemetry attack types generate different temporal characteristics
+and therefore challenge the detector in different ways. Evaluating performance
+separately for each attack category provides deeper insight into the strengths
+and limitations of the proposed hybrid architecture.
+Table 7.5 and Figure 7.11 break down Precision, Recall, and F 1 by attack
+type at the two primary operating points.
+T able 7.5:Per-attack-type performance atp 99 and Best-F1 thresholds.
+p99 (τ= 0.2029)Best-F 1 (τ= 0.0509)
+Attack Prec. Rec. F 1 Prec. Rec. F 1
+spike 0.973 0.978 0.975 0.886 1.000 0.939
+noise 0.945 0.820 0.878 0.870 1.000 0.931
+freeze 0.883 0.500 0.638 0.815 0.997 0.897
+drift 0.517 0.135 0.214 0.600 1.000 0.750
+The per-attack results reveal that the proposed detector does not respond
+uniformly to all anomaly categories. Instead, the detection behaviour varies
+123
+
+===== PAGE 143  (matched 2 keywords) =====
+according to the temporal characteristics and statistical intensity of each
+attack type. Abrupt anomalies such as spike and noise attacks generally
+produce stronger deviations from the learned normal telemetry distribution,
+leading to higher anomaly scores and improved separability. In contrast,
+gradual or partially stable anomalies such as drift and freeze attacks produce
+more subtle temporal deviations, making them comparatively more difficult
+to isolate under conservative operating thresholds.
+The comparison between the Best-F1 and p99 operating points further highlights
+the impact of threshold calibration on attack-specific detection performance.
+Lower thresholds maximise sensitivity and therefore preserve high recall across
+nearly all attack categories. However, stricter thresholds significantly suppress
+lower-intensity anomaly scores, particularly for drift-related behaviour, where
+temporal deviations evolve gradually rather than appearing as sudden changes.
+In addition, the results demonstrate that the proposed hybrid architecture is
+highly effective in capturing abrupt dynamic inconsistencies within telemetry
+sequences. The combination of reconstruction, prediction, and gradient-based
+scoring enables the detector to identify sudden temporal disruptions with
+high confidence. Nevertheless, the reduced performance observed for drift
+attacks at conservative thresholds suggests that gradual long-term behavioural
+changes remain more challenging for reconstruction-based anomaly detection
+models operating on relatively short temporal windows.
+(a)Atp 99 threshold.
+ (b)At Best-F 1 threshold.
+Figure 7.11:Per-attack F 1 scores at the two primary operating points.
+124
+
+===== PAGE 144  (matched 6 keywords) =====
+Discussion.Spike and noise attacks are detected reliably at both thresholds
+because these attack types introduce strong abrupt deviations in telemetry
+behaviour. Such deviations generate large reconstruction and gradient errors,
+making them highly separable from the learned normal telemetry distribution.
+Consequently, the detector achieves very high recall and strong F 1 scores for
+both attack categories across multiple operating points.
+Freeze attacks reach near-perfect recall at the sweep optimum but experience
+noticeable degradation at stricter thresholds. This behaviour suggests that
+certain freeze windows partially resemble stable nominal telemetry behaviour,
+particularly when the frozen values remain within historically normal operating
+ranges. As a result, some freeze anomalies generate only moderate anomaly
+scores and become increasingly difficult to detect under conservative thresholds.
+Drift anomalies constitute the most challenging attack category in the
+evaluation. Unlike abrupt attacks, drift anomalies evolve gradually over
+time and therefore generate smaller short-term deviations from the learned
+normal distribution. As a result, the anomaly score margin for drift windows
+remains relatively narrow compared with spike and noise attacks.
+Although the detector achieves perfect recall for drift at the Best-F1 threshold,
+recall decreases substantially under conservative thresholds such as p99. This
+limitation indicates that gradual long-term deviations remain more difficult for
+reconstruction-based anomaly detection architectures operating on relatively
+short temporal windows.
+The per-attack evaluation therefore demonstrates that the proposed hybrid
+architecture is particularly effective for detecting abrupt telemetry anomalies
+while remaining comparatively less sensitive to low-amplitude gradual temporal
+deviations. These findings are consistent with the behaviour expected from
+reconstruction and prediction-based anomaly detection models.
+Overall, the evaluation demonstrates that the proposed hybrid architecture
+achieves strong robustness against abrupt telemetry anomalies while maintaining
+competitive performance under highly imbalanced conditions. The results also
+highlight the importance of adaptive threshold selection and motivate future
+work on improved drift-sensitive modelling techniques and longer temporal
+context integration.
+125

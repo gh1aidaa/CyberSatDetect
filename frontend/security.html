@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CyberSatDetect | Security Center</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="security.css">
+<link rel="stylesheet" href="admin-access-denied.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<div id="canvas_container"></div>
+
+<nav class="navbar">
+  <div class="logo"><span>CyberSatDetect</span></div>
+  <div class="nav-links">
+    <a href="dashboard.html">Dashboard</a>
+    <a href="data-upload.html">Data Upload</a>
+    <a href="anomaly.html">Anomaly Detection</a>
+    <a href="analysis.html">Analysis</a>
+    <a href="reports.html">Reports</a>
+    <a href="admin-cl.html">CL Admin</a>
+    <a href="security.html" class="active">Security</a>
+    <a href="about.html">About</a>
+    <a href="terms.html">Terms</a>
+    <a href="login.html" class="logout">Logout</a>
+  </div>
+</nav>
+
+<div class="security-page">
+
+<!-- ===== HEADER + KPIs ===== -->
+<div class="panel header-strip">
+  <div>
+    <h1> Security Center</h1>
+    <p class="subtitle">Incident monitoring, audit logs, and user management</p>
+  </div>
+  <div class="header-kpis">
+    <div class="kpi">
+      <span class="kpi-label">Open Incidents</span>
+      <div class="kpi-value kpi-red" id="kpiOpen">—</div>
+    </div>
+    <div class="kpi">
+      <span class="kpi-label">Closed</span>
+      <div class="kpi-value kpi-green" id="kpiClosed">—</div>
+    </div>
+    <div class="kpi">
+      <span class="kpi-label">Total Users</span>
+      <div class="kpi-value" id="kpiUsers">—</div>
+    </div>
+    <div class="kpi">
+      <span class="kpi-label">Blocked</span>
+      <div class="kpi-value kpi-orange" id="kpiBlocked">—</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== TAB BAR ===== -->
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="incidents"> Incidents</button>
+  <button class="tab-btn" data-tab="audit"> Audit Logs</button>
+  <button class="tab-btn" data-tab="users"> User Management</button>
+</div>
+
+<!-- ===== TAB 1: INCIDENTS ===== -->
+<div class="tab-content active" id="tab-incidents">
+  <div class="panel">
+    <div class="panel-header">
+      <h2>Security Incidents</h2>
+      <div class="filter-row">
+        <select id="filterType">
+          <option value="">All Types</option>
+          <option value="FAILED_LOGIN">Failed Login</option>
+          <option value="ACCOUNT_LOCKED">Account Locked</option>
+          <option value="LOGIN_LOCKED">Login Locked</option>
+          <option value="INVALID_FILE">Invalid File</option>
+          <option value="FILE_TOO_LARGE">File Too Large</option>
+          <option value="USER_BLOCKED">User Blocked</option>
+          <option value="USER_UNBLOCKED">User Unblocked</option>
+        </select>
+        <select id="filterStatus">
+          <option value="">All Status</option>
+          <option value="OPEN">Open</option>
+          <option value="CLOSED">Closed</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="chart-row">
+      <div class="chart-box">
+        <canvas id="incidentTypeChart"></canvas>
+      </div>
+      <div class="chart-box">
+        <canvas id="incidentTimeChart"></canvas>
+      </div>
+    </div>
+
+    <div class="table-wrapper">
+      <table class="sec-table">
+        <thead>
+          <tr>
+            <th>Time</th>
+            <th>Type</th>
+            <th>User</th>
+            <th>IP</th>
+            <th>Details</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="incidentTableBody">
+          <tr><td colspan="7">Loading…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ===== TAB 2: AUDIT LOGS ===== -->
+<div class="tab-content" id="tab-audit">
+  <div class="panel">
+    <div class="panel-header">
+      <h2>Audit Logs</h2>
+      <select id="auditFilter">
+        <option value="all">All Events</option>
+        <option value="incidents">Security Events</option>
+        <option value="runs">File Operations</option>
+      </select>
+    </div>
+
+    <div class="table-wrapper">
+      <table class="sec-table">
+        <thead>
+          <tr>
+            <th>Time</th>
+            <th>Category</th>
+            <th>User</th>
+            <th>Event</th>
+            <th>Details</th>
+          </tr>
+        </thead>
+        <tbody id="auditTableBody">
+          <tr><td colspan="5">Loading…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ===== TAB 3: USER MANAGEMENT ===== -->
+<div class="tab-content" id="tab-users">
+  <div class="panel">
+    <div class="panel-header">
+      <h2>User Management</h2>
+    </div>
+
+    <div class="table-wrapper">
+      <table class="sec-table">
+        <thead>
+          <tr>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Status</th>
+            <th>Failed Attempts</th>
+            <th>Locked Until</th>
+            <th>Created</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="userTableBody">
+          <tr><td colspan="7">Loading…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+</div><!-- /security-page -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128/examples/js/controls/OrbitControls.js"></script>
+<script src="session-guard.js"></script>
+<script src="admin-access-denied.js"></script>
+<script src="security.js"></script>
+
+</body>
+</html>

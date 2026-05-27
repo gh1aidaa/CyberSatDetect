@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CyberSatDetect | Terms & Privacy</title>
+  <link rel="stylesheet" href="terms.css" />
+</head>
+<body>
+
+  <div id="canvas_container"></div>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="logo">
+      <span>CyberSatDetect</span>
+    </div>
+
+    <nav class="nav-links">
+      <a href="dashboard.html">Dashboard</a>
+      <a href="data-upload.html">Data Upload</a>
+      <a href="anomaly.html">Anomaly Detection</a>
+      <a href="analysis.html">Analysis</a>
+      <a href="reports.html">Reports</a>
+      <a href="admin-cl.html">CL Admin</a>
+      <a href="security.html">Security</a>
+      <a href="about.html">About</a>
+      <a class="active" href="terms.html">Terms</a>
+      <a class="logout" href="login.html">Logout</a>
+    </nav>
+  </header>
+
+  <main class="terms-page">
+
+    <!-- HEADER -->
+    <section class="panel header-strip">
+      <div>
+        <h1>Terms of Use & Privacy Notice</h1>
+        <p class="subtitle">
+          Overview of how CyberSatDetect may be used and how telemetry and usage data are handled.
+        </p>
+        <p class="mini-note">
+          This section is written for an academic / research deployment of the platform.
+        </p>
+      </div>
+    </section>
+
+    <!-- MAIN GRID -->
+    <section class="main-grid">
+
+      <!-- LEFT COLUMN -->
+      <section class="left-col">
+
+        <!-- TERMS OF USE -->
+        <div class="panel">
+          <div class="panel-header">
+            <h2 class="section-title">Terms of Use</h2>
+          </div>
+
+          <p>
+            CyberSatDetect is intended for academic, research, and experimental analysis of satellite telemetry.
+            By using this platform, you agree to operate it responsibly and within the scope of its design.
+          </p>
+          <p>
+            The system allows users to upload telemetry files, run anomaly detection, and review generated reports.
+            It is not a certified operational safety tool, and all results must be interpreted in context.
+          </p>
+
+          <ul class="bullet-list">
+            <li>Users must only upload valid telemetry files in the approved formats (\texttt{.csv} or \texttt{.npy}).</li>
+            <li>It is not permitted to intentionally upload malicious or irrelevant data.</li>
+            <li>Reverse engineering, bypassing controls, or tampering with the detection logic is not allowed.</li>
+            <li>Access credentials are personal and must not be shared with unauthorized parties.</li>
+            <li>The system may log basic actions (such as file uploads and detection runs) for traceability.</li>
+          </ul>
+        </div>
+
+        <!-- LEGAL DISCLAIMER -->
+        <div class="panel">
+          <div class="panel-header">
+            <h2 class="section-title">Legal Disclaimer</h2>
+          </div>
+
+          <p>
+            CyberSatDetect is developed as a graduation and research project. While it provides meaningful anomaly
+            insights for telemetry streams, it is not guaranteed to detect every possible failure or cyber incident.
+          </p>
+          <p>
+            The developers and supervising institution are not liable for operational decisions made solely based on
+            this platform. It is the responsibility of the user or mission operator to validate findings and integrate
+            them with other monitoring tools and procedures.
+          </p>
+        </div>
+
+      </section>
+
+      <!-- RIGHT COLUMN -->
+      <section class="right-col">
+
+        <!-- PRIVACY NOTICE -->
+        <div class="panel">
+          <div class="panel-header">
+            <h2 class="section-title">Privacy Notice</h2>
+          </div>
+
+          <p>
+            The platform focuses on telemetry data, not on personal information. In the current implementation,
+            processing is oriented around satellite channels, system health, and anomaly scores rather than user identity.
+          </p>
+          <p>
+            For a front-end prototype, uploaded files are handled locally in the browser environment, and no external
+            transmission is performed unless explicitly configured in a backend environment.
+          </p>
+
+          <ul class="bullet-list">
+            <li>Telemetry files are used exclusively for anomaly detection and model evaluation.</li>
+            <li>No personal data fields are required for basic use of the console.</li>
+            <li>File names and timestamps may be stored temporarily to support the user session and auditability.</li>
+            <li>Data is not shared with third parties in the context of this academic deployment.</li>
+          </ul>
+        </div>
+
+        <!-- SECURITY COMMITMENT -->
+        <div class="panel">
+          <div class="panel-header">
+            <h2 class="section-title">Security Commitment</h2>
+          </div>
+
+          <p>
+            The system design follows a security-aware approach, aligned with the rest of CyberSatDetect. The web
+            console and backend pipeline are structured to preserve data integrity, traceability, and model reliability.
+          </p>
+
+          <ul class="bullet-list">
+            <li>File type and size are validated before processing to protect the pipeline.</li>
+            <li>Detection thresholds and internal model parameters are not exposed for direct manipulation.</li>
+            <li>Anomaly outputs shown in the UI are read-only, derived from a controlled processing path.</li>
+            <li>Key timestamps (such as last detection run) can be recorded for auditing and debugging.</li>
+            <li>The platform is intended to comply with baseline cybersecurity practices in an academic context.</li>
+          </ul>
+        </div>
+
+      </section>
+
+    </section>
+  </main>
+
+  <!-- Three.js background -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128/examples/js/controls/OrbitControls.js"></script>
+  <script src="terms.js"></script>
+</body>
+</html>

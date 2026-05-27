@@ -1,0 +1,53 @@
+{
+    "mean": 0.011380924843251705,
+    "std": 0.06732248514890671,
+    "thresholds": {
+        "3sigma": 0.21334838028997183,
+        "p99": 0.20287272334098816,
+        "p995": 0.29965412616729736,
+        "p997": 0.5696346163749695,
+        "best_f1": 0.05090320985004883
+    },
+    "weights": {
+        "W_RECON": 1.0,
+        "W_PRED": 2.0,
+        "W_GRAD": 2.0,
+        "W_SEP": 0.5
+    },
+    "self_supervised": {
+        "pseudo_anomalies": [
+            "freeze",
+            "pattern_shift"
+        ],
+        "anomaly_margin": 0.15
+    },
+    "performance_metrics": {
+        "operational_policy": "p99",
+        "threshold_value": 0.20287272334098816,
+        "evaluation_protocol": "strict_window_level_four_attack_subset",
+        "evaluation_source": "eval_four_attacks_qc_filtered_output/overall_threshold_metrics_4attacks.csv",
+        "model_status": "Operational",
+        "windows_normal_test": 226623,
+        "windows_attacked": 182323,
+        "windows_positive_label": 54712,
+        "imbalance_neg_to_pos": 6.4745,
+        "accuracy": 0.9630342392394106,
+        "balanced_accuracy": 0.8746379463346617,
+        "precision": 0.9614264071786505,
+        "recall": 0.7539479456060828,
+        "true_positive_rate": 0.7539479456060828,
+        "true_negative_rate": 0.9953279028077753,
+        "far": 0.004672052936759317,
+        "false_positive_rate": 0.004672052936759317,
+        "fnr": 0.2460527854956865,
+        "f1": 0.8451396785395987,
+        "roc_auc": 0.9958213927944642,
+        "pr_auc": 0.9561506531454553,
+        "confusion_matrix": {
+            "TP": 41250,
+            "TN": 352579,
+            "FP": 1655,
+            "FN": 13462
+        }
+    }
+}

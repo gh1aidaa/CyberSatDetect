@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CyberSatDetect | Data Upload</title>
+  <link rel="stylesheet" href="data-upload.css" />
+</head>
+
+<body>
+
+  <!-- Background Canvas -->
+  <div id="canvas_container"></div>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="logo">
+      <span>CyberSatDetect</span>
+    </div>
+
+    <nav class="nav-links">
+      <a href="dashboard.html">Dashboard</a>
+      <a class="active" href="data-upload.html">Data Upload</a>
+      <a href="anomaly.html">Anomaly Detection</a>
+      <a href="analysis.html">Analysis</a>
+      <a href="reports.html">Reports</a>
+      <a href="admin-cl.html">CL Admin</a>
+      <a href="security.html">Security</a>
+      <a href="about.html">About</a>
+      <a href="terms.html">Terms</a>
+      <a class="logout" href="login.html">Logout</a>
+    </nav>
+  </header>
+
+  <!-- MAIN -->
+  <main class="upload-page">
+
+    <!-- HEADER -->
+    <section class="panel header-strip">
+      <div>
+        <h1>Telemetry Data Upload</h1>
+        <p class="subtitle">
+          Upload telemetry data in CSV or NPY format. The file will be validated,
+          cleaned, standardized, and segmented in preparation for anomaly detection.
+        </p>
+      </div>
+    </section>
+
+    <!-- UPLOAD PANEL -->
+    <section class="panel upload-panel">
+      <div class="upload-grid">
+
+        <div class="upload-left">
+          <h3>Select Telemetry File</h3>
+
+          <p class="hint">
+            Allowed extensions: <strong>.csv</strong> and <strong>.npy</strong> only.
+          </p>
+
+          <label class="file-label" for="fileInput">
+            <span id="fileLabelText">Click to choose telemetry file…</span>
+          </label>
+
+          <input
+            type="file"
+            id="fileInput"
+            accept=".csv,.npy"
+          />
+
+          <p id="fileStatus" class="status-msg">
+            No file selected.
+          </p>
+
+          <button
+            id="btnStart"
+            class="primary-btn"
+            disabled
+          >
+            Upload &amp; Prepare Data →
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- SCRIPTS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128/examples/js/controls/OrbitControls.js"></script>
+  <script src="session-guard.js"></script>
+  <script src="data-upload.js?v=upload-inline-prepare-3"></script>
+
+</body>
+</html>

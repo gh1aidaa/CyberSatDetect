@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CyberSatDetect | About</title>
+  <link rel="stylesheet" href="about.css" />
+</head>
+<body>
+
+  <div id="canvas_container"></div>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="logo">
+      <span>CyberSatDetect</span>
+    </div>
+
+    <nav class="nav-links">
+      <a href="dashboard.html">Dashboard</a>
+      <a href="data-upload.html">Data Upload</a>
+      <a href="anomaly.html">Anomaly Detection</a>
+      <a href="analysis.html">Analysis</a>
+      <a href="reports.html">Reports</a>
+      <a href="admin-cl.html">CL Admin</a>
+      <a href="security.html">Security</a>
+      <a class="active" href="about.html">About</a>
+      <a href="terms.html">Terms</a>
+      <a class="logout" href="login.html">Logout</a>
+    </nav>
+  </header>
+
+  <main class="about-page">
+
+    <!-- HEADER STRIP -->
+    <section class="panel header-strip">
+      <div>
+        <h1>About CyberSatDetect</h1>
+        <p class="subtitle">
+          An AI-driven anomaly detection system for satellite telemetry, built on hybrid LSTM–GRU models and secure processing pipelines.
+        </p>
+        <p class="mini-note">
+          This page provides a high-level overview of the project, its AI models, and the security mindset behind the design.
+        </p>
+      </div>
+
+      <div class="quick-facts">
+        <div class="fact-card">
+          <span class="fact-label">Core Models</span>
+          <span class="fact-value">LSTM + GRU</span>
+        </div>
+        <div class="fact-card">
+          <span class="fact-label">Focus</span>
+          <span class="fact-value">Satellite Telemetry</span>
+        </div>
+        <div class="fact-card">
+          <span class="fact-label">Mode</span>
+          <span class="fact-value">Unsupervised + Continual</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- MAIN GRID -->
+    <section class="main-grid">
+
+      <!-- LEFT COLUMN: PROJECT STORY -->
+      <section class="left-col">
+
+        <div class="panel about-panel">
+          <h2 class="section-title">Project Overview</h2>
+          <p>
+            <strong>CyberSatDetect</strong> is a graduation project that targets the security and reliability of satellite operations
+            by analyzing raw telemetry streams and automatically detecting abnormal behavior. The system ingests mission telemetry,
+            cleans and normalizes it, segments the data into time windows, and then applies a hybrid deep-learning engine
+            to score each window for anomalous patterns.
+          </p>
+          <p>
+            Instead of relying on static thresholds or manual inspection, CyberSatDetect uses a data-driven approach that
+            learns temporal behavior directly from telemetry. This is particularly important for space missions, where
+            complex subsystems, non-linear dynamics, and evolving operating modes make traditional rule-based monitoring
+            difficult to maintain and scale.
+          </p>
+          <p>
+            The platform is structured as a secure, modular web console: the user uploads a telemetry file through the
+            <em>Data Upload</em> page, runs the hybrid anomaly engine from the <em>Anomaly Detection</em> page, and then
+            generates a mission-ready report from the <em>Reports</em> page. Each step is designed with both operational
+            usability and security controls in mind.
+          </p>
+        </div>
+
+        <div class="panel about-panel">
+          <h2 class="section-title">Telemetry Workflow</h2>
+          <p>
+            The system follows a clear end-to-end pipeline. First, the user provides a telemetry file in an approved format
+            (CSV or NPY). The data then passes through three main preprocessing stages:
+          </p>
+          <ul class="inline-list">
+            <li><strong>Clean Data:</strong> remove corrupted rows, invalid values, and structural inconsistencies.</li>
+            <li><strong>Normalization:</strong> scale and align telemetry channels to comparable ranges.</li>
+            <li><strong>Time Segmentation:</strong> slice the stream into fixed-size windows that become anomaly segments.</li>
+          </ul>
+          <p>
+            After preprocessing, each segment is forwarded to the anomaly engine. The front-end console does not expose
+            raw model parameters; instead, it visualizes the resulting scores and classifications in a controlled way.
+            This separation keeps the user experience focused on operational insights while preserving model integrity.
+          </p>
+        </div>
+
+      </section>
+
+      <!-- RIGHT COLUMN: MODELS + SECURITY -->
+      <section class="right-col">
+
+        <div class="panel about-panel">
+          <h2 class="section-title">Hybrid LSTM–GRU Anomaly Engine</h2>
+          <p>
+            At the core of CyberSatDetect is a hybrid anomaly engine that combines two recurrent neural architectures:
+            a Long Short-Term Memory (LSTM) network and a Gated Recurrent Unit (GRU). Both models process the same
+            telemetry segments but specialize in capturing different temporal behaviors. The LSTM focuses on longer-term
+            dependencies, while the GRU reacts more quickly to short, sharp changes.
+          </p>
+          <p>
+            For each segment, both models produce an anomaly score. These scores are then fused into a single value using
+            a weighted combination.
+          <p>
+            The fused score is compared against an internal threshold computed by the system, not by the operator, to decide
+            whether a segment is considered anomalous. Selected anomalies can later be used to support continual learning,
+            where the model is fine-tuned on evolving telemetry patterns without retraining from scratch.
+          </p>
+        </div>
+
+        <div class="panel about-panel">
+          <h2 class="section-title">Security Mindset</h2>
+          <p>
+            The design of the web console and backend pipeline follows a security-conscious mindset. Telemetry files are
+            strictly validated before processing, anomaly thresholds and model internals are not exposed to direct user
+            manipulation, and all outputs shown in the console are read-only views derived from a validated processing path.
+          </p>
+          <p class="sec-title">Security-related aspects highlighted by this page include:</p>
+          <ul class="security-list">
+            <li>Safe ingestion of telemetry through strict file-type and size validation.</li>
+            <li>Model integrity by preventing end-users from changing thresholds or core detection logic.</li>
+            <li>Use of a documented, step-wise pipeline (Upload → Preprocess → Detect → Report) for traceability.</li>
+            <li>Support for auditability by exposing when a file was processed and when detection was last executed.</li>
+          </ul>
+          <p>
+            Overall, CyberSatDetect is not only an AI project but also a secure telemetry processing framework that
+            combines anomaly detection, continual learning, and basic cyber controls tailored to satellite operations.
+          </p>
+        </div>
+
+      </section>
+
+    </section>
+  </main>
+
+  <!-- Three.js background -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128/examples/js/controls/OrbitControls.js"></script>
+  <script src="about.js"></script>
+</body>
+</html>

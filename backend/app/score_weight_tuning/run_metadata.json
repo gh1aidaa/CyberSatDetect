@@ -1,0 +1,47 @@
+{
+  "started_at": "2026-04-29T14:00:10Z",
+  "model": "C:\\Users\\mohan\\Desktop\\gh\\CyberSatDetectprojct2\\CyberSatDetectprojct\\backend\\app\\best_model.keras",
+  "normal_dir": "C:\\Users\\mohan\\Desktop\\gh\\CyberSatDetectprojct2\\CyberSatDetectprojct\\data\\reduced",
+  "attacked_dir": "C:\\Users\\mohan\\Desktop\\gh\\CyberSatDetectprojct2\\CyberSatDetectprojct\\data\\attacked_v2",
+  "split_json": "C:\\Users\\mohan\\Desktop\\gh\\CyberSatDetectprojct2\\CyberSatDetectprojct\\backend\\config\\data_split.json",
+  "split_key": "test",
+  "window_size": 100,
+  "stride": 50,
+  "batch_size": 256,
+  "grid": {
+    "w_recon": [
+      0.5,
+      1.0,
+      1.5,
+      2.0
+    ],
+    "w_pred": [
+      0.5,
+      1.0,
+      2.0,
+      3.0,
+      4.0
+    ],
+    "w_grad": [
+      0.5,
+      1.0,
+      2.0,
+      3.0,
+      4.0
+    ]
+  },
+  "used_cache": false,
+  "cache_path": "C:\\Users\\mohan\\Desktop\\gh\\CyberSatDetectprojct2\\CyberSatDetectprojct\\backend\\app\\score_weight_tuning\\cached_errors.npz",
+  "results_csv": "C:\\Users\\mohan\\Desktop\\gh\\CyberSatDetectprojct2\\CyberSatDetectprojct\\backend\\app\\score_weight_tuning\\weight_grid_results.csv",
+  "finished_at": "2026-04-29T14:00:10Z",
+  "best_by_policy": {
+    "w_recon": 1.5,
+    "w_pred": 2.0,
+    "w_grad": 2.0
+  },
+  "policy": "maximize ROC-AUC; then maximize best_f1; then minimize FAR at best_f1 threshold",
+  "notes": [
+    "Statistical thresholds computed from NORMAL TEST scores only (unsupervised rule).",
+    "best_f1 threshold is analysis-only (uses labels for measurement)."
+  ]
+}

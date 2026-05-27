@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CyberSatDetect | Analysis</title>
+  <link rel="stylesheet" href="analysis.css" />
+</head>
+<body>
+
+  <div id="canvas_container"></div>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="logo">
+      <span>CyberSatDetect</span>
+    </div>
+
+    <nav class="nav-links">
+      <a href="dashboard.html">Dashboard</a>
+      <a href="data-upload.html">Data Upload</a>
+      <a href="anomaly.html">Anomaly Detection</a>
+      <a class="active" href="analysis.html">Analysis</a>
+      <a href="reports.html">Reports</a>
+      <a href="admin-cl.html">CL Admin</a>
+      <a href="security.html">Security</a>
+      <a href="about.html">About</a>
+      <a href="terms.html">Terms</a>
+      <a class="logout" href="login.html">Logout</a>
+    </nav>
+  </header>
+
+  <main class="analysis-page">
+
+    <!-- HEADER -->
+    <section class="panel header-strip">
+      <div>
+        <h1>Telemetry Analysis</h1>
+        <p class="subtitle">
+          Review all segments produced by the anomaly engine, including normal and anomalous behavior.
+        </p>
+      </div>
+
+      <div class="header-meta">
+        <div>
+          <span class="label">Telemetry file</span>
+          <span class="value" id="fileNameLabel">—</span>
+        </div>
+        <div>
+          <span class="label">Detection run time</span>
+          <span class="value" id="runTimeLabel">—</span>
+        </div>
+        <div class="filter-box">
+          <label>
+            <input type="checkbox" id="onlyAnomalies" />
+            Show anomalies only
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <!-- GRID -->
+    <section class="main-grid">
+
+      <!-- LEFT: SEGMENTS TABLE -->
+      <section class="left-col panel">
+        <div class="panel-header">
+          <h3>Segments Overview</h3>
+          <span class="hint">
+            Select a segment to visualize its behavior and inspect detailed metrics.
+          </span>
+        </div>
+
+        <div class="table-wrap">
+          <table class="seg-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Score</th>
+                <th>Status</th>
+                <th>Severity</th>
+                <th>Channel</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="segBody"></tbody>
+          </table>
+        </div>
+
+        <p id="tableNote" class="note">
+          Waiting for anomaly detection results. Please run detection first.
+        </p>
+      </section>
+
+      <!-- RIGHT: CHART + METRICS -->
+      <section class="right-col">
+
+        <div class="panel chart-panel">
+          <div class="panel-header">
+            <h3>Segment Visualization</h3>
+            <span class="hint" id="chartHint">
+              Select a segment from the table to render its telemetry trace.
+            </span>
+          </div>
+          <canvas id="segChart"></canvas>
+        </div>
+
+        <div class="panel metrics-panel">
+          <h3>Segment Metrics</h3>
+          <ul class="metrics-list">
+            <li><span>Mean</span> <strong id="mMean">—</strong></li>
+            <li><span>Std Dev</span> <strong id="mStd">—</strong></li>
+            <li><span>Min</span> <strong id="mMin">—</strong></li>
+            <li><span>Max</span> <strong id="mMax">—</strong></li>
+            <li><span>Score</span> <strong id="mScore">—</strong></li>
+            <li><span>Status</span> <strong id="mFlag">—</strong></li>
+            <li><span>Severity</span> <strong id="mSeverity">—</strong></li>
+            <li><span>Channel</span> <strong id="mChannel">—</strong></li>
+          </ul>
+
+          <button type="button" class="primary-btn" id="btnExport" disabled>
+            Export analysis to Reports →
+          </button>
+        </div>
+
+      </section>
+    </section>
+  </main>
+
+  <!-- SCRIPTS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128/examples/js/controls/OrbitControls.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="session-guard.js"></script>
+  <script src="analysis.js?v=export-reports-1"></script>
+</body>
+</html>

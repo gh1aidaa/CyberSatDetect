@@ -1,0 +1,10 @@
+{
+  "attack_types_only": [
+    "drift",
+    "freeze",
+    "noise",
+    "spike"
+  ],
+  "thresholds_json": "C:\\Users\\mohan\\Desktop\\gh\\CyberSatDetectprojct2\\CyberSatDetectprojct\\backend\\experiments\\univariate_pattern_solution_experiment\\results_eval_four_single\\univariate_pattern_thresholds.json",
+  "writes_to": "C:\\Users\\mohan\\Desktop\\gh\\CyberSatDetectprojct2\\CyberSatDetectprojct\\backend\\experiments\\univariate_pattern_solution_experiment\\results_eval_four_single\\eval_four_attacks_only"
+}

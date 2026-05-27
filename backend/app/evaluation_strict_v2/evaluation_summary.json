@@ -1,0 +1,79 @@
+{
+  "normal": {
+    "files_used": 144,
+    "files_failed": 0,
+    "windows": 241896,
+    "score_stats": {
+      "mean": 0.015261513975980747,
+      "std": 0.11336557021461861,
+      "min": 7.894373993622139e-06,
+      "max": 8.07409381866455
+    }
+  },
+  "attacked_v2": {
+    "files_used": 144,
+    "files_failed": 0,
+    "windows": 241896,
+    "windows_anomaly": 72588,
+    "windows_normal_inside_attacked": 169308,
+    "attack_type_distribution": {
+      "pattern_shift": 33,
+      "freeze": 29,
+      "spike": 33,
+      "drift": 18,
+      "noise": 31
+    },
+    "score_stats": {
+      "mean": 0.13448434421407376,
+      "std": 0.31482258645673306,
+      "min": 7.894373993622139e-06,
+      "max": 8.435521125793457
+    }
+  },
+  "thresholds": {
+    "computed_from": "normal_test_only",
+    "stats": {
+      "mean": 0.015261513975980747,
+      "std": 0.11336557021461861
+    },
+    "statistical": {
+      "p99": 0.18273157328367173,
+      "p995": 0.5362889751791932,
+      "p997": 0.9805450773239156,
+      "3sigma": 0.35535822461983657
+    },
+    "analysis": {
+      "best_f1_threshold": 0.05329476296901703,
+      "best_youden_threshold": 0.049680911004543304,
+      "far_le_1pct": 0.18273157328367173,
+      "far_le_0.5pct": 0.5362889751791932
+    }
+  },
+  "curves": {
+    "roc_auc": 0.8893151209692287,
+    "pr_auc": 0.7441777005267352
+  },
+  "best_operating_point_by_f1_among_candidates": {
+    "name": "best_f1",
+    "threshold": 0.05329476296901703,
+    "accuracy": 0.9360282931507755,
+    "precision": 0.8023058270048934,
+    "recall": 0.7612001983798975,
+    "tpr": 0.7612001983798975,
+    "f1": 0.7812126653329281,
+    "tnr": 0.966889913522242,
+    "far": 0.033110086477758,
+    "fpr": 0.033110086477758,
+    "fnr": 0.2387998016201025,
+    "balanced_accuracy": 0.8640450559510697,
+    "TP": 55254,
+    "TN": 397589,
+    "FP": 13615,
+    "FN": 17334
+  },
+  "artifacts": {
+    "threshold_comparison_csv": "C:\\Users\\mohan\\Desktop\\gh\\CyberSatDetectprojct2\\CyberSatDetectprojct\\backend\\app\\evaluation_strict_v2\\threshold_comparison.csv",
+    "window_scores_csv": "C:\\Users\\mohan\\Desktop\\gh\\CyberSatDetectprojct2\\CyberSatDetectprojct\\backend\\app\\evaluation_strict_v2\\window_scores.csv",
+    "window_scores_rows_written": 483792
+  }
+}

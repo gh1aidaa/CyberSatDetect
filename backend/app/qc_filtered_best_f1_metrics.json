@@ -1,0 +1,40 @@
+{
+  "started_at": "2026-05-13T05:49:49Z",
+  "model": "backend/app/best_model_qc_filtered.keras",
+  "thresholds_file": "backend/app/thresholds_qc_filtered.json",
+  "evaluation": {
+    "protocol": "strict_window_level_four_attack_subset",
+    "source": "eval_four_attacks_qc_filtered_output/evaluation_summary_4attacks.json",
+    "attack_types": ["drift", "freeze", "noise", "spike"],
+    "windows_normal": 226623,
+    "windows_attacked": 182323,
+    "anomalous_windows": 54712,
+    "imbalance_neg_to_pos": 6.4745,
+    "total_windows_scored": 408946
+  },
+  "selection": {
+    "policy": "p99",
+    "method": "thresholds_qc_filtered_calibrated_p99",
+    "threshold": 0.20287272334098816
+  },
+  "confusion_matrix": {
+    "TP": 41250,
+    "TN": 352579,
+    "FP": 1655,
+    "FN": 13462
+  },
+  "metrics": {
+    "accuracy": 0.9630342392394106,
+    "balanced_accuracy": 0.8746379463346617,
+    "precision": 0.9614264071786505,
+    "recall": 0.7539479456060828,
+    "tpr": 0.7539479456060828,
+    "tnr": 0.9953279028077753,
+    "far": 0.004672052936759317,
+    "fpr": 0.004672052936759317,
+    "fnr": 0.2460527854956865,
+    "f1": 0.8451396785395987,
+    "roc_auc": 0.9958213927944642,
+    "pr_auc": 0.9561506531454553
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "model_file": "univariate_pattern_allfeatures_worder_0_5.keras",
+  "recon_target": "all_features",
+  "w_order_train": 0.5,
+  "input_shape_aug": [
+    100,
+    8
+  ],
+  "trained_epochs": 1
+}

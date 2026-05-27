@@ -1,0 +1,5 @@
+{
+  "threshold_csv": "backend/app/evaluation_strict_v2/threshold_comparison.csv",
+  "summary_json": "backend/app/evaluation_strict_v2/evaluation_summary.json",
+  "training_history_json": null
+}

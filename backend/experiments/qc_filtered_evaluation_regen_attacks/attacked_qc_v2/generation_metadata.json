@@ -1,0 +1,23 @@
+{
+  "normal_dir": "C:\\Users\\mohan\\Desktop\\gh\\CyberSatDetectprojct2\\CyberSatDetectprojct\\data\\reduced",
+  "split_json": "C:\\Users\\mohan\\Desktop\\gh\\CyberSatDetectprojct2\\CyberSatDetectprojct\\backend\\config\\data_split_qc_filtered.json",
+  "split_key": "test",
+  "output_dir": "C:\\Users\\mohan\\Desktop\\gh\\CyberSatDetectprojct2\\CyberSatDetectprojct\\backend\\experiments\\qc_filtered_evaluation_regen_attacks\\attacked_qc_v2",
+  "window_size": 100,
+  "stride": 50,
+  "seed": 42,
+  "attack_type_mode": "mixed",
+  "window_anom_frac": 0.1,
+  "min_attack_len": 10,
+  "max_attack_len": 40,
+  "files_total": 72,
+  "files_ok": 72,
+  "files_failed": 0,
+  "attack_type_counts": {
+    "freeze": 17,
+    "spike": 14,
+    "drift": 12,
+    "pattern_shift": 14,
+    "noise": 15
+  }
+}

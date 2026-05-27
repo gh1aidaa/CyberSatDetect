@@ -1,0 +1,6 @@
+{
+  "w_recon": 1.5,
+  "w_pred": 2.0,
+  "w_grad": 2.0,
+  "selection_policy": "maximize ROC-AUC; then maximize best_f1; then minimize FAR at best_f1 threshold"
+}

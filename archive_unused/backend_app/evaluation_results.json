@@ -1,0 +1,124 @@
+{
+    "model_path": "C:\\Users\\mohan\\Desktop\\gh\\CyberSatDetectprojct2\\CyberSatDetectprojct\\backend\\app\\best_model.keras",
+    "normal_source": {
+        "dir": "C:\\Users\\mohan\\Desktop\\gh\\CyberSatDetectprojct2\\CyberSatDetectprojct\\data\\reduced",
+        "split_file": "C:\\Users\\mohan\\Desktop\\gh\\CyberSatDetectprojct2\\CyberSatDetectprojct\\backend\\config\\data_split.json",
+        "split_key": "test",
+        "n_files": 144
+    },
+    "anomaly_source": {
+        "dir": "C:\\Users\\mohan\\Desktop\\gh\\CyberSatDetectprojct2\\CyberSatDetectprojct\\data\\attacked",
+        "n_files": 953
+    },
+    "n_normal": 241896,
+    "n_anomaly": 1746302,
+    "score_stats": {
+        "normal": {
+            "mean": 0.02372458204627037,
+            "std": 0.1977766752243042,
+            "min": 9.386123565491289e-06,
+            "max": 15.287973403930664
+        },
+        "anomaly": {
+            "mean": 3.323547601699829,
+            "std": 15.101747512817383,
+            "min": 9.386123565491289e-06,
+            "max": 178.90237426757812
+        },
+        "mean_separation": 3.299823045730591
+    },
+    "thresholds_used": {
+        "3sigma": 0.297262292355299,
+        "p99": 0.20147375762462616,
+        "p995": 0.30574238300323486,
+        "p997": 0.6043527722358704
+    },
+    "per_threshold": {
+        "3sigma": {
+            "threshold": 0.297262292355299,
+            "accuracy": 0.17065101161956706,
+            "precision": 0.9775334889285504,
+            "recall": 0.057082337419300896,
+            "f1": 0.10786592478612501,
+            "tnr": 0.9905289876641201,
+            "far": 0.009471012335879882,
+            "confusion_matrix": {
+                "TP": 99683,
+                "TN": 239605,
+                "FP": 2291,
+                "FN": 1646619
+            },
+            "name": "3sigma"
+        },
+        "p99": {
+            "threshold": 0.20147375762462616,
+            "accuracy": 0.17570131345067241,
+            "precision": 0.9655091730000953,
+            "recall": 0.06379938865098934,
+            "f1": 0.11968985252686395,
+            "tnr": 0.9835466481463108,
+            "far": 0.01645335185368919,
+            "confusion_matrix": {
+                "TP": 111413,
+                "TN": 237916,
+                "FP": 3980,
+                "FN": 1634889
+            },
+            "name": "p99"
+        },
+        "p995": {
+            "threshold": 0.30574238300323486,
+            "accuracy": 0.17016262967772827,
+            "precision": 0.9785018808372952,
+            "recall": 0.05645472547131023,
+            "f1": 0.10675047575735427,
+            "tnr": 0.99104573866455,
+            "far": 0.008954261335449945,
+            "confusion_matrix": {
+                "TP": 98587,
+                "TN": 239730,
+                "FP": 2166,
+                "FN": 1647715
+            },
+            "name": "p995"
+        },
+        "p997": {
+            "threshold": 0.6043527722358704,
+            "accuracy": 0.1680064058006295,
+            "precision": 0.9853756190074807,
+            "recall": 0.053554310766408104,
+            "f1": 0.10158743262590078,
+            "tnr": 0.994261996891226,
+            "far": 0.005738003108774019,
+            "confusion_matrix": {
+                "TP": 93522,
+                "TN": 240508,
+                "FP": 1388,
+                "FN": 1652780
+            },
+            "name": "p997"
+        }
+    },
+    "best_f1_operating_point": {
+        "threshold": 9.386123565491289e-06,
+        "f1": 0.9352266702369796,
+        "metrics": {
+            "threshold": 9.386123565491289e-06,
+            "accuracy": 0.8783340492244737,
+            "precision": 0.8783344298047073,
+            "recall": 0.9999994273613613,
+            "f1": 0.935226635547803,
+            "tnr": 4.134008003439495e-06,
+            "far": 0.9999958659919965,
+            "confusion_matrix": {
+                "TP": 1746301,
+                "TN": 1,
+                "FP": 241895,
+                "FN": 1
+            },
+            "name": "BEST F1*"
+        }
+    },
+    "roc_auc": 0.5128927621283754,
+    "pr_auc": 0.8937832999264659
+}

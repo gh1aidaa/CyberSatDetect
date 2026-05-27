@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CyberSatDetect — التقنيات والأدوات المستخدمة</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg-1: #05060f;
+    --bg-2: #0b1024;
+    --bg-3: #131a3a;
+    --accent: #4cc9f0;
+    --accent-2: #7b5cff;
+    --accent-3: #f72585;
+    --text: #e8ecff;
+    --text-dim: #a9b3d6;
+    --card: rgba(255, 255, 255, 0.04);
+    --card-border: rgba(124, 142, 255, 0.18);
+    --shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0; height: 100%;
+    background: radial-gradient(1200px 800px at 80% -10%, #1b2266 0%, transparent 60%),
+                radial-gradient(900px 700px at -10% 100%, #2a1356 0%, transparent 60%),
+                linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 100%);
+    color: var(--text);
+    font-family: 'Cairo', 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    overflow: hidden;
+  }
+  /* starfield */
+  body::before {
+    content: "";
+    position: fixed; inset: 0;
+    background-image:
+      radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,.55), transparent 40%),
+      radial-gradient(1px 1px at 70% 80%, rgba(255,255,255,.45), transparent 40%),
+      radial-gradient(1.5px 1.5px at 40% 60%, rgba(255,255,255,.6), transparent 40%),
+      radial-gradient(1px 1px at 85% 20%, rgba(255,255,255,.5), transparent 40%),
+      radial-gradient(1px 1px at 10% 80%, rgba(255,255,255,.45), transparent 40%),
+      radial-gradient(2px 2px at 55% 15%, rgba(255,255,255,.5), transparent 40%);
+    background-size: 100% 100%;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .deck {
+    position: relative;
+    width: 100vw; height: 100vh;
+    overflow: hidden;
+  }
+  .slide {
+    position: absolute; inset: 0;
+    padding: 56px 64px 80px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn .45s ease forwards;
+  }
+  .slide.active { display: flex; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+  .badge {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, rgba(76,201,240,.18), rgba(123,92,255,.18));
+    border: 1px solid var(--card-border);
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: .5px;
+    margin-bottom: 18px;
+  }
+  h1 {
+    font-size: clamp(36px, 5vw, 64px);
+    line-height: 1.15;
+    margin: 8px 0 14px;
+    background: linear-gradient(90deg, #ffffff 0%, #c5cdff 50%, #7eb6ff 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    text-align: center;
+  }
+  h2 {
+    font-size: clamp(28px, 3.6vw, 42px);
+    margin: 0 0 8px;
+    text-align: center;
+  }
+  h2 .accent { color: var(--accent); }
+  .subtitle {
+    color: var(--text-dim);
+    font-size: clamp(14px, 1.4vw, 18px);
+    max-width: 920px;
+    text-align: center;
+    line-height: 1.7;
+  }
+
+  /* Title slide */
+  .hero {
+    text-align: center;
+    display: flex; flex-direction: column; align-items: center; gap: 18px;
+  }
+  .hero-logo {
+    width: clamp(160px, 22vw, 280px);
+    height: clamp(160px, 22vw, 280px);
+    border-radius: 28px;
+    box-shadow: var(--shadow);
+    background: rgba(255,255,255,0.03);
+    padding: 14px;
+    border: 1px solid var(--card-border);
+  }
+  .hero-meta {
+    display: flex; gap: 14px; flex-wrap: wrap; justify-content: center;
+    margin-top: 12px;
+  }
+  .pill {
+    padding: 8px 16px; border-radius: 999px;
+    background: var(--card); border: 1px solid var(--card-border);
+    color: var(--text-dim); font-size: 13px; font-weight: 600;
+  }
+
+  /* Logo grid */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 20px;
+    width: 100%;
+    max-width: 1180px;
+    margin-top: 28px;
+  }
+  .grid.compact { grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 14px; }
+
+  .logo-card {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 18px;
+    padding: 18px 14px 14px;
+    display: flex; flex-direction: column; align-items: center; gap: 10px;
+    transition: transform .25s ease, border-color .25s ease, background .25s ease;
+    backdrop-filter: blur(6px);
+    position: relative;
+    overflow: hidden;
+  }
+  .logo-card::before {
+    content: ""; position: absolute; inset: -1px;
+    background: linear-gradient(135deg, rgba(76,201,240,.0), rgba(123,92,255,.0));
+    opacity: 0; transition: opacity .25s ease;
+    pointer-events: none; border-radius: inherit;
+  }
+  .logo-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(124, 142, 255, 0.45);
+    background: rgba(255,255,255,0.06);
+  }
+  .logo-card:hover::before { opacity: 1; background: linear-gradient(135deg, rgba(76,201,240,.10), rgba(123,92,255,.10)); }
+  .logo-card img {
+    width: 64px; height: 64px; object-fit: contain;
+    filter: drop-shadow(0 6px 18px rgba(0,0,0,.35));
+  }
+  .grid.compact .logo-card img { width: 48px; height: 48px; }
+  .logo-card .name {
+    font-weight: 800; font-size: 15px; color: var(--text); text-align: center;
+  }
+  .logo-card .role {
+    font-size: 12px; color: var(--text-dim); text-align: center; line-height: 1.5;
+  }
+  .logo-card .ver {
+    font-size: 11px; color: var(--accent);
+    background: rgba(76,201,240,.08);
+    padding: 2px 8px; border-radius: 999px;
+    border: 1px solid rgba(76,201,240,.25);
+  }
+
+  /* Section header bar */
+  .section-head {
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 6px;
+  }
+  .section-head .dot {
+    width: 12px; height: 12px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    box-shadow: 0 0 16px var(--accent);
+  }
+
+  /* Footer / nav */
+  .deck-footer {
+    position: absolute; left: 0; right: 0; bottom: 18px;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 28px;
+    z-index: 5;
+  }
+  .nav {
+    display: flex; gap: 8px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--card-border);
+    padding: 6px; border-radius: 999px;
+    backdrop-filter: blur(8px);
+  }
+  .nav button {
+    background: transparent; color: var(--text);
+    border: 0; cursor: pointer;
+    padding: 8px 14px; border-radius: 999px; font-weight: 700;
+    font-family: inherit;
+    transition: background .2s ease;
+  }
+  .nav button:hover { background: rgba(255,255,255,.08); }
+  .nav .counter {
+    color: var(--text-dim); padding: 8px 14px; font-weight: 700;
+  }
+  .brand {
+    font-weight: 800; color: var(--text-dim);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .brand img { width: 28px; height: 28px; border-radius: 6px; }
+
+  /* Categories two-col */
+  .twocol {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 22px;
+    width: 100%; max-width: 1180px; margin-top: 22px;
+  }
+  .col-card {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 20px; padding: 22px;
+  }
+  .col-card h3 {
+    margin: 0 0 12px; font-size: 18px; color: var(--accent);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .row-tech {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px dashed rgba(255,255,255,.06);
+  }
+  .row-tech:last-child { border-bottom: none; }
+  .row-tech img { width: 32px; height: 32px; object-fit: contain; }
+  .row-tech .t-name { font-weight: 700; }
+  .row-tech .t-desc { color: var(--text-dim); font-size: 13px; margin-right: auto; }
+
+  /* Print */
+  @media print {
+    body, html { overflow: visible; height: auto; }
+    .deck { width: 100%; height: auto; }
+    .slide { display: flex !important; position: relative; page-break-after: always; height: 100vh; }
+    .deck-footer { display: none; }
+  }
+
+  /* small screens */
+  @media (max-width: 720px) {
+    .slide { padding: 28px 16px 80px; }
+    .twocol { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="deck" id="deck">
+
+  <!-- Slide 1: Title -->
+  <section class="slide active">
+    <div class="hero">
+      <img class="hero-logo" alt="CyberSatDetect Logo"
+           src="images/logos/logo_10_premium_gradient_hero.png"
+           onerror="this.src='images/logos/logo_01_primary_dark_full.png'" />
+      <span class="badge">Cybersecurity • AI • Satellites</span>
+      <h1>CyberSatDetect</h1>
+      <div class="subtitle">
+        نظام كشف الهجمات السيبرانية على بيانات الأقمار الاصطناعية
+        <br/>
+        <span style="color:#fff">التقنيات والأدوات المستخدمة في المشروع</span>
+      </div>
+      <div class="hero-meta">
+        <span class="pill">Hybrid LSTM-GRU Autoencoder</span>
+        <span class="pill">Continual Learning</span>
+        <span class="pill">FastAPI + JS Frontend</span>
+        <span class="pill">PostgreSQL / SQLite</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 2: Overview categories -->
+  <section class="slide">
+    <div class="section-head"><span class="dot"></span><span class="badge">نظرة عامة</span></div>
+    <h2>منظومة المشروع <span class="accent">في لمحة</span></h2>
+    <p class="subtitle">قُسّمت الأدوات والتقنيات إلى <b>سبعة محاور</b> تُغطّي جميع طبقات النظام: من تدريب نماذج الذكاء الاصطناعي وحتى نشر الواجهة وتأمين الوصول.</p>
+    <div class="grid">
+      <div class="logo-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="Python"/><div class="name">Backend</div><div class="role">Python · FastAPI</div></div>
+      <div class="logo-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tensorflow/tensorflow-original.svg" alt="ML"/><div class="name">Machine Learning</div><div class="role">TensorFlow · Keras</div></div>
+      <div class="logo-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="JS"/><div class="name">Frontend</div><div class="role">HTML · CSS · JS</div></div>
+      <div class="logo-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg" alt="DB"/><div class="name">Databases</div><div class="role">PostgreSQL · SQLite</div></div>
+      <div class="logo-card"><img src="https://cdn.simpleicons.org/jsonwebtokens/D63AFF" alt="Security"/><div class="name">Security</div><div class="role">JWT · bcrypt · CORS</div></div>
+      <div class="logo-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" alt="DevOps"/><div class="name">DevOps</div><div class="role">Docker · Git</div></div>
+      <div class="logo-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg" alt="Tools"/><div class="name">Dev Tools</div><div class="role">VS Code · Cursor</div></div>
+    </div>
+  </section>
+
+  <!-- Slide 3: Backend -->
+  <section class="slide">
+    <div class="section-head"><span class="dot"></span><span class="badge">المحور 1 — الخادم (Backend)</span></div>
+    <h2>طبقة الخادم وواجهة <span class="accent">REST API</span></h2>
+    <p class="subtitle">بُني الـ API باستخدام <b>FastAPI</b> ويعمل على خادم <b>Uvicorn</b> ASGI عالي الأداء، مع التحقّق من المدخلات عبر <b>Pydantic</b> وتقييد الطلبات عبر <b>SlowAPI</b>.</p>
+    <div class="grid">
+      <div class="logo-card">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="Python"/>
+        <div class="name">Python</div><div class="role">لغة الخادم الأساسية</div>
+        <span class="ver">3.10+</span>
+      </div>
+      <div class="logo-card">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastapi/fastapi-original.svg" alt="FastAPI"/>
+        <div class="name">FastAPI</div><div class="role">إطار عمل REST API</div>
+        <span class="ver">0.110.0</span>
+      </div>
+      <div class="logo-card">
+        <img src="https://cdn.simpleicons.org/gunicorn/499848" alt="Uvicorn"/>
+        <div class="name">Uvicorn</div><div class="role">خادم ASGI لتشغيل FastAPI</div>
+        <span class="ver">0.27.0</span>
+      </div>
+      <div class="logo-card">
+        <img src="https://cdn.simpleicons.org/pydantic/E92063" alt="Pydantic"/>
+        <div class="name">Pydantic</div><div class="role">التحقّق من المدخلات والمخططات</div>
+        <span class="ver">2.6.1</span>
+      </div>
+      <div class="logo-card">
+        <img src="https://cdn.simpleicons.org/starlette/000000?viewbox=auto" alt="Starlette"
+             onerror="this.src='https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg'"/>
+        <div class="name">Starlette</div><div class="role">Middleware ASGI</div>
+      </div>
+      <div class="logo-card">
+        <img src="https://cdn.simpleicons.org/dotenv/ECD53F" alt="dotenv"/>
+        <div class="name">python-dotenv</div><div class="role">تحميل الإعدادات من .env</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 4: ML / AI -->
+  <section class="slide">
+    <div class="section-head"><span class="dot"></span><span class="badge">المحور 2 — الذكاء الاصطناعي</span></div>
+    <h2>التعلّم العميق و<span class="accent">معالجة البيانات</span></h2>
+    <p class="subtitle">قلب المشروع هو نموذج هجين <b>LSTM-GRU Autoencoder</b> مدرّب على بيانات الأقمار الاصطناعية، مع آلية تعلّم مستمر (Continual Learning) لتحديث النموذج تلقائيًا.</p>
+    <div class="grid">
+      <div class="logo-card">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tensorflow/tensorflow-original.svg" alt="TensorFlow"/>
+        <div class="name">TensorFlow</div><div class="role">إطار التعلم العميق</div>
+        <span class="ver">2.15.0</span>
+      </div>
+      <div class="logo-card">
+        <img src="https://cdn.simpleicons.org/keras/D00000" alt="Keras"/>
+        <div class="name">Keras</div><div class="role">طبقات النموذج Hybrid LSTM-GRU</div>
+      </div>
+      <div class="logo-card">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/numpy/numpy-original.svg" alt="NumPy"/>
+        <div class="name">NumPy</div><div class="role">العمليات العددية والمصفوفات</div>
+        <span class="ver">1.24.3</span>
+      </div>
+      <div class="logo-card">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pandas/pandas-original.svg" alt="Pandas"/>
+        <div class="name">Pandas</div><div class="role">معالجة DataFrames و CSV</div>
+        <span class="ver">2.2.0</span>
+      </div>
+      <div class="logo-card">
+        <img src="https://cdn.simpleicons.org/scikitlearn/F7931E" alt="scikit-learn"/>
+        <div class="name">scikit-learn</div><div class="role">المقاييس والتقييم</div>
+      </div>
+      <div class="logo-card">
+        <img src="https://cdn.simpleicons.org/scipy/8CAAE6" alt="SciPy"/>
+        <div class="name">SciPy</div><div class="role">الإحصاء والإشارات</div>
+      </div>
+      <div class="logo-card">
+        <img src="https://cdn.simpleicons.org/python/3776AB" alt="Matplotlib"/>
+        <div class="name">Matplotlib</div><div class="role">رسم منحنيات التدريب والنتائج</div>
+      </div>
+      <div class="logo-card">
+        <img src="https://cdn.simpleicons.org/jupyter/F37626" alt="Jupyter"/>
+        <div class="name">Jupyter / Colab</div><div class="role">تجارب التدريب والتحليل</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 5: Frontend -->
+  <section class="slide">
+    <div class="section-head"><span class="dot"></span><span class="badge">المحور 3 — الواجهة (Frontend)</span></div>
+    <h2>الواجهة التفاعلية و<span class="accent">التصوّر البياني</span></h2>
+    <p class="subtitle">واجهة المستخدم بنيت بـ <b>HTML5/CSS3/Vanilla JS</b> مع رسومات تفاعلية عبر <b>Chart.js</b> وخلفيات فضائية ثلاثية الأبعاد عبر <b>Three.js</b>.</p>
+    <div class="grid">
+      <div class="logo-card">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt="HTML5"/>
+        <div class="name">HTML5</div><div class="role">هيكلة الصفحات</div>
+      </div>
+      <div class="logo-card">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" alt="CSS3"/>
+        <div class="name">CSS3</div><div class="role">التصميم والـ Animations</div>
+      </div>
+      <div class="logo-card">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="JavaScript"/>
+        <div class="name">JavaScript</div><div class="role">منطق الواجهة (Vanilla)</div>
+      </div>
+      <div class="logo-card">
+        <img src="https://cdn.simpleicons.org/chartdotjs/FF6384" alt="Chart.js"/>
+        <div class="name">Chart.js</div><div class="role">المخططات في الـ Dashboard</div>
+      </div>
+      <div class="logo-card">
+        <img src="https://cdn.simpleicons.org/threedotjs/000000" alt="Three.js"
+             style="background:#fff;border-radius:10px;padding:6px;"/>
+        <div class="name">Three.js</div><div class="role">خلفيات الفضاء ثلاثية الأبعاد</div>
+      </div>
+      <div class="logo-card">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" alt="Node.js"/>
+        <div class="name">Node.js</div><div class="role">خادم الواجهة المحلي</div>
+      </div>
+      <div class="logo-card">
+        <img src="https://cdn.simpleicons.org/express/000000"
+             style="background:#fff;border-radius:10px;padding:6px;" alt="Express"/>
+        <div class="name">Express.js</div><div class="role">Routing لخدمة الصفحات</div>
+      </div>
+      <div class="logo-card">
+        <img src="https://cdn.simpleicons.org/helmet/0F8B8D" alt="Helmet"
+             onerror="this.src='https://cdn.simpleicons.org/express/000000'"/>
+        <div class="name">Helmet</div><div class="role">رؤوس HTTP الأمنية</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 6: Database -->
+  <section class="slide">
+    <div class="section-head"><span class="dot"></span><span class="badge">المحور 4 — قواعد البيانات</span></div>
+    <h2>التخزين والاستعلامات</h2>
+    <p class="subtitle">استخدمنا <b>SQLite</b> للتطوير المحلي و<b>PostgreSQL 16</b> داخل حاويات Docker للنشر، مع <b>SQLAlchemy</b> كطبقة ORM.</p>
+    <div class="grid">
+      <div class="logo-card">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg" alt="PostgreSQL"/>
+        <div class="name">PostgreSQL</div><div class="role">قاعدة بيانات الإنتاج</div>
+        <span class="ver">v16</span>
+      </div>
+      <div class="logo-card">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/sqlite/sqlite-original.svg" alt="SQLite"/>
+        <div class="name">SQLite</div><div class="role">قاعدة البيانات المحلية</div>
+      </div>
+      <div class="logo-card">
+        <img src="https://cdn.simpleicons.org/sqlalchemy/D71F00" alt="SQLAlchemy"/>
+        <div class="name">SQLAlchemy</div><div class="role">طبقة ORM في Python</div>
+        <span class="ver">2.0.25</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 7: Security -->
+  <section class="slide">
+    <div class="section-head"><span class="dot"></span><span class="badge">المحور 5 — الأمن والمصادقة</span></div>
+    <h2>أدوات <span class="accent">الحماية</span> والمصادقة</h2>
+    <p class="subtitle">طبقات حماية متعددة: تجزئة كلمات المرور بـ <b>bcrypt</b>، تراخيص <b>JWT</b>، تنظيف المدخلات عبر <b>XSS</b>، تقييد الطلبات بـ <b>SlowAPI</b> و<b>express-rate-limit</b>.</p>
+    <div class="grid">
+      <div class="logo-card">
+        <img src="https://cdn.simpleicons.org/jsonwebtokens/000000"
+             style="background:#fff;border-radius:10px;padding:6px;" alt="JWT"/>
+        <div class="name">JWT</div><div class="role">رموز المصادقة</div>
+      </div>
+      <div class="logo-card">
+        <img src="https://cdn.simpleicons.org/letsencrypt/003A70" alt="bcrypt"
+             onerror="this.src='https://cdn.simpleicons.org/python/3776AB'"/>
+        <div class="name">bcrypt</div><div class="role">تجزئة كلمات المرور</div>
+      </div>
+      <div class="logo-card">
+        <img src="https://cdn.simpleicons.org/owasp/000000"
+             style="background:#fff;border-radius:10px;padding:6px;" alt="OWASP"/>
+        <div class="name">OWASP Best-Practices</div><div class="role">CORS · CSP · Rate-Limiting</div>
+      </div>
+      <div class="logo-card">
+        <img src="https://cdn.simpleicons.org/cloudflare/F38020" alt="Helmet/Headers"/>
+        <div class="name">Security Headers</div><div class="role">Helmet (Node) + Starlette (Py)</div>
+      </div>
+      <div class="logo-card">
+        <img src="https://cdn.simpleicons.org/maildotru/005FF9" alt="SMTP" onerror="this.src='https://cdn.simpleicons.org/gmail/EA4335'"/>
+        <div class="name">SMTP / OTP</div><div class="role">رموز التحقق عبر البريد</div>
+      </div>
+      <div class="logo-card">
+        <img src="https://cdn.simpleicons.org/express/000000"
+             style="background:#fff;border-radius:10px;padding:6px;" alt="Rate Limit"/>
+        <div class="name">Rate Limiting</div><div class="role">SlowAPI · express-rate-limit</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 8: Reports & Files -->
+  <section class="slide">
+    <div class="section-head"><span class="dot"></span><span class="badge">المحور 6 — التقارير والملفات</span></div>
+    <h2>توليد <span class="accent">التقارير</span> والملفات</h2>
+    <p class="subtitle">يقوم النظام بتوليد تقارير الكشف وإحصائيات الهجمات بصيغ <b>PDF</b> و<b>Excel</b> تلقائيًا.</p>
+    <div class="grid">
+      <div class="logo-card">
+        <img src="https://cdn.simpleicons.org/adobeacrobatreader/EC1C24" alt="ReportLab/PDF"/>
+        <div class="name">ReportLab</div><div class="role">توليد ملفات PDF</div>
+        <span class="ver">4.2.2</span>
+      </div>
+      <div class="logo-card">
+        <img src="https://cdn.simpleicons.org/microsoftexcel/217346" alt="Excel"/>
+        <div class="name">openpyxl</div><div class="role">قراءة وكتابة Excel</div>
+        <span class="ver">3.1.5</span>
+      </div>
+      <div class="logo-card">
+        <img src="https://cdn.simpleicons.org/files/2196F3" alt="CSV" onerror="this.src='https://cdn.simpleicons.org/python/3776AB'"/>
+        <div class="name">CSV / JSON</div><div class="role">تبادل البيانات والإعدادات</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 9: DevOps -->
+  <section class="slide">
+    <div class="section-head"><span class="dot"></span><span class="badge">المحور 7 — DevOps والنشر</span></div>
+    <h2>البنية التحتيّة <span class="accent">والنشر</span></h2>
+    <p class="subtitle">حاويات <b>Docker</b> لعزل قاعدة البيانات، ومستودع <b>Git/GitHub</b> لإدارة الإصدارات والنسخ الاحتياطي.</p>
+    <div class="grid">
+      <div class="logo-card">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" alt="Docker"/>
+        <div class="name">Docker</div><div class="role">حاويات الخدمات</div>
+      </div>
+      <div class="logo-card">
+        <img src="https://cdn.simpleicons.org/dockercompose/2496ED" alt="Docker Compose"/>
+        <div class="name">Docker Compose</div><div class="role">تشغيل عدة خدمات معًا</div>
+      </div>
+      <div class="logo-card">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" alt="Git"/>
+        <div class="name">Git</div><div class="role">التحكم بالإصدارات</div>
+      </div>
+      <div class="logo-card">
+        <img src="https://cdn.simpleicons.org/github/ffffff" alt="GitHub"/>
+        <div class="name">GitHub</div><div class="role">المستودع البعيد</div>
+      </div>
+      <div class="logo-card">
+        <img src="https://cdn.simpleicons.org/powershell/5391FE" alt="PowerShell"/>
+        <div class="name">PowerShell</div><div class="role">سكربتات الأتمتة (Windows)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 10: Dev Tools -->
+  <section class="slide">
+    <div class="section-head"><span class="dot"></span><span class="badge">المحور 8 — أدوات التطوير</span></div>
+    <h2>بيئة التطوير <span class="accent">والاختبار</span></h2>
+    <p class="subtitle">استخدمت محررات حديثة مدعومة بالذكاء الاصطناعي إلى جانب أدوات Python القياسية.</p>
+    <div class="grid">
+      <div class="logo-card">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg" alt="VS Code"/>
+        <div class="name">VS Code</div><div class="role">المحرر الأساسي</div>
+      </div>
+      <div class="logo-card">
+        <img src="https://www.cursor.com/favicon.ico" alt="Cursor"
+             onerror="this.src='https://cdn.simpleicons.org/visualstudiocode/007ACC'"/>
+        <div class="name">Cursor IDE</div><div class="role">محرر مدعوم بـ AI</div>
+      </div>
+      <div class="logo-card">
+        <img src="https://cdn.simpleicons.org/postman/FF6C37" alt="Postman"/>
+        <div class="name">Postman</div><div class="role">اختبار REST API</div>
+      </div>
+      <div class="logo-card">
+        <img src="https://cdn.simpleicons.org/swagger/85EA2D" alt="Swagger"/>
+        <div class="name">Swagger / OpenAPI</div><div class="role">توثيق الـ API</div>
+      </div>
+      <div class="logo-card">
+        <img src="https://cdn.simpleicons.org/pypi/3775A9" alt="pip"/>
+        <div class="name">pip / venv</div><div class="role">إدارة حزم Python</div>
+      </div>
+      <div class="logo-card">
+        <img src="https://cdn.simpleicons.org/githubcopilot/000000"
+             style="background:#fff;border-radius:10px;padding:6px;" alt="AI tools"/>
+        <div class="name">AI Pair-Coding</div><div class="role">تسريع التطوير والمراجعة</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 11: Full stack at a glance -->
+  <section class="slide">
+    <div class="section-head"><span class="dot"></span><span class="badge">الخلاصة</span></div>
+    <h2>منصّة المشروع <span class="accent">كاملة</span></h2>
+    <p class="subtitle">مجموعة الأدوات والتقنيات في مكان واحد.</p>
+    <div class="grid compact">
+      <div class="logo-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg"/><div class="name">Python</div></div>
+      <div class="logo-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastapi/fastapi-original.svg"/><div class="name">FastAPI</div></div>
+      <div class="logo-card"><img src="https://cdn.simpleicons.org/pydantic/E92063"/><div class="name">Pydantic</div></div>
+      <div class="logo-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tensorflow/tensorflow-original.svg"/><div class="name">TensorFlow</div></div>
+      <div class="logo-card"><img src="https://cdn.simpleicons.org/keras/D00000"/><div class="name">Keras</div></div>
+      <div class="logo-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/numpy/numpy-original.svg"/><div class="name">NumPy</div></div>
+      <div class="logo-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pandas/pandas-original.svg"/><div class="name">Pandas</div></div>
+      <div class="logo-card"><img src="https://cdn.simpleicons.org/scikitlearn/F7931E"/><div class="name">scikit-learn</div></div>
+      <div class="logo-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg"/><div class="name">HTML5</div></div>
+      <div class="logo-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg"/><div class="name">CSS3</div></div>
+      <div class="logo-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg"/><div class="name">JavaScript</div></div>
+      <div class="logo-card"><img src="https://cdn.simpleicons.org/chartdotjs/FF6384"/><div class="name">Chart.js</div></div>
+      <div class="logo-card"><img src="https://cdn.simpleicons.org/threedotjs/000000" style="background:#fff;border-radius:10px;padding:6px;"/><div class="name">Three.js</div></div>
+      <div class="logo-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg"/><div class="name">Node.js</div></div>
+      <div class="logo-card"><img src="https://cdn.simpleicons.org/express/000000" style="background:#fff;border-radius:10px;padding:6px;"/><div class="name">Express</div></div>
+      <div class="logo-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg"/><div class="name">PostgreSQL</div></div>
+      <div class="logo-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/sqlite/sqlite-original.svg"/><div class="name">SQLite</div></div>
+      <div class="logo-card"><img src="https://cdn.simpleicons.org/sqlalchemy/D71F00"/><div class="name">SQLAlchemy</div></div>
+      <div class="logo-card"><img src="https://cdn.simpleicons.org/jsonwebtokens/000000" style="background:#fff;border-radius:10px;padding:6px;"/><div class="name">JWT</div></div>
+      <div class="logo-card"><img src="https://cdn.simpleicons.org/owasp/000000" style="background:#fff;border-radius:10px;padding:6px;"/><div class="name">bcrypt/OWASP</div></div>
+      <div class="logo-card"><img src="https://cdn.simpleicons.org/adobeacrobatreader/EC1C24"/><div class="name">ReportLab</div></div>
+      <div class="logo-card"><img src="https://cdn.simpleicons.org/microsoftexcel/217346"/><div class="name">openpyxl</div></div>
+      <div class="logo-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg"/><div class="name">Docker</div></div>
+      <div class="logo-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg"/><div class="name">Git</div></div>
+      <div class="logo-card"><img src="https://cdn.simpleicons.org/github/ffffff"/><div class="name">GitHub</div></div>
+      <div class="logo-card"><img src="https://cdn.simpleicons.org/powershell/5391FE"/><div class="name">PowerShell</div></div>
+      <div class="logo-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg"/><div class="name">VS Code</div></div>
+      <div class="logo-card"><img src="https://cdn.simpleicons.org/postman/FF6C37"/><div class="name">Postman</div></div>
+      <div class="logo-card"><img src="https://cdn.simpleicons.org/swagger/85EA2D"/><div class="name">Swagger</div></div>
+      <div class="logo-card"><img src="https://cdn.simpleicons.org/jupyter/F37626"/><div class="name">Jupyter</div></div>
+    </div>
+  </section>
+
+  <!-- Slide 12: Thank You -->
+  <section class="slide">
+    <div class="hero">
+      <img class="hero-logo" alt="Logo"
+           src="images/logos/logo_06_emblem_seal_circle.png"
+           onerror="this.src='images/logos/logo_01_primary_dark_full.png'" />
+      <span class="badge">شكرًا لكم</span>
+      <h1>أسئلتكم؟</h1>
+      <p class="subtitle">CyberSatDetect — كشف الهجمات السيبرانية على بيانات الأقمار الاصطناعية باستخدام التعلم العميق</p>
+    </div>
+  </section>
+
+  <!-- Footer / Nav -->
+  <div class="deck-footer">
+    <div class="brand">
+      <img src="images/logos/logo_03_icon_app_mark.png" alt="" onerror="this.style.display='none'"/>
+      <span>CyberSatDetect</span>
+    </div>
+    <div class="nav">
+      <button id="prevBtn">السابق ◀</button>
+      <span class="counter"><span id="curr">1</span> / <span id="total">12</span></span>
+      <button id="nextBtn">▶ التالي</button>
+      <button id="printBtn" title="حفظ كـ PDF">طباعة / PDF</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const totalEl = document.getElementById('total');
+  const currEl = document.getElementById('curr');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const printBtn = document.getElementById('printBtn');
+  let idx = 0;
+
+  totalEl.textContent = slides.length;
+
+  function go(n) {
+    idx = (n + slides.length) % slides.length;
+    slides.forEach((s, i) => s.classList.toggle('active', i === idx));
+    currEl.textContent = idx + 1;
+  }
+  prevBtn.addEventListener('click', () => go(idx - 1));
+  nextBtn.addEventListener('click', () => go(idx + 1));
+  printBtn.addEventListener('click', () => window.print());
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft')  go(idx + 1); // RTL: left = next
+    if (e.key === 'ArrowRight') go(idx - 1);
+    if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ') go(idx + 1);
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') go(idx - 1);
+    if (e.key === 'Home') go(0);
+    if (e.key === 'End') go(slides.length - 1);
+    if (e.key === 'p' || e.key === 'P') window.print();
+  });
+</script>
+</body>
+</html>

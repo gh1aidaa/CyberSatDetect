@@ -1,0 +1,17 @@
+قائمة مرجعية — انسخ هذه المسارات من مشروعك إلى كولاب / Drive
+================================================================
+
+[إلزامي للتدريب بنفس الكود]
+  backend/models/train_hybrid_model.py
+  backend/config/data_split_qc_filtered.json
+  data/reduced/chunk_*.npy   (كل الشُقَع أو reduced.zip ثم فك ضغط)
+
+[سكربت التشغيل على كولاب — يوجّه المخرجات لمجلد آمن]
+  backend/experiments/colab_qc_package/colab_run_qc_training.py
+  backend/experiments/colab_qc_package/README_AR.txt
+
+[اختياري — تقييم لاحقاً]
+  backend/models/evaluate_model_strict_v2.py
+  backend/models/regenerate_attacked_dataset.py
+
+ملاحظة: لا تحتاج تعديل ملفات النظام؛ شغّل colab_run_qc_training.py مع --repo-root و --output-root.

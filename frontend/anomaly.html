@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CyberSatDetect | Anomaly Detection</title>
+  <link rel="stylesheet" href="anomaly.css?v=5" />
+</head>
+<body>
+
+  <div id="canvas_container"></div>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="logo">
+      <span>CyberSatDetect</span>
+    </div>
+
+    <nav class="nav-links">
+      <a href="dashboard.html">Dashboard</a>
+      <a href="data-upload.html">Data Upload</a>
+      <a class="active" href="anomaly.html">Anomaly Detection</a>
+      <a href="analysis.html">Analysis</a>
+      <a href="reports.html">Reports</a>
+      <a href="admin-cl.html">CL Admin</a>
+      <a href="security.html">Security</a>
+      <a href="about.html">About</a>
+      <a href="terms.html">Terms</a>
+      <a class="logout" href="login.html">Logout</a>
+    </nav>
+  </header>
+
+  <main class="anom-page">
+
+    <!-- HEADER -->
+    <section class="panel header-strip">
+      <div>
+        <h1>Anomaly Detection</h1>
+        <p class="subtitle">
+          Run the fused LSTM + GRU model on the latest cleaned telemetry batch to compute anomaly scores
+          and flag suspicious segments automatically.
+        </p>
+      </div>
+
+      <div class="run-meta">
+        <div class="meta-item">
+          <span class="label">Telemetry file</span>
+          <span class="value" id="fileNameLabel">—</span>
+        </div>
+        <div class="meta-item">
+          <span class="label">Processed status</span>
+          <span class="value" id="cleanStatusLabel">—</span>
+        </div>
+        <div class="meta-item">
+          <span class="label">System threshold</span>
+          <span class="value" id="thresholdLabel">—</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- GRID -->
+    <section class="main-grid">
+
+      <!-- LEFT: RUN CONTROL + SUMMARY -->
+      <section class="left-col">
+
+        <div class="panel control-panel">
+          <div class="panel-header">
+            <h3>Detection Control</h3>
+            
+          </div>
+
+          <p class="status-msg" id="detStatus">
+            Ready. Click <strong>"Run Detection"</strong> to start the hybrid model.
+          </p>
+
+          <button id="btnRun" class="primary-btn">
+            ▶ Run Detection
+          </button>
+
+          <button id="btnGoAnalysis" class="ghost-btn" disabled>
+            Open Analysis →
+          </button>
+
+          <button type="button" id="btnBailAnalyze" class="ghost-btn bail-btn" style="display: none">
+            Stop waiting — reset stuck run
+          </button>
+          
+        </div>
+
+        <div class="panel summary-panel">
+          <div class="panel-header">
+            <h3>Detection Summary</h3>
+          </div>
+          <div class="summary-grid">
+            <div>
+              <span class="label">Total segments</span>
+              <span class="value" id="sumTotal">—</span>
+            </div>
+            <div>
+              <span class="label">Anomalies</span>
+              <span class="value" id="sumAnom">—</span>
+            </div>
+            <div>
+              <span class="label">High severity</span>
+              <span class="value" id="sumHigh">—</span>
+            </div>
+            <div>
+              <span class="label">Medium severity</span>
+              <span class="value" id="sumMed">—</span>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- RIGHT: SEGMENTS SNAPSHOT -->
+      <section class="right-col">
+
+        <div class="panel list-panel">
+          <div class="panel-header">
+            <h3>Flagged Segments Snapshot</h3>
+            
+          </div>
+
+          <div class="table-wrap">
+            <table class="anom-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Score</th>
+                  <th>Severity</th>
+                  <th>Channel</th>
+                </tr>
+              </thead>
+              <tbody id="anomBody">
+                <!-- rows via JS -->
+              </tbody>
+            </table>
+          </div>
+
+          <p class="note" id="anomNote">
+            No detection run yet. Run the model to see the first snapshot.
+          </p>
+        </div>
+
+      </section>
+    </section>
+
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128/examples/js/controls/OrbitControls.js"></script>
+  <script src="session-guard.js"></script>
+  <script src="anomaly.js?v=status-msg-no-cpu-1"></script>
+</body>
+</html>

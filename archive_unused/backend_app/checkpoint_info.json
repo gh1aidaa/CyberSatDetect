@@ -1,0 +1,7 @@
+{
+    "last_chunk": 659,
+    "best_val_loss": 0.006380969192832708,
+    "best_chunk": 600,
+    "no_improve_count": 3,
+    "current_lr": 0.000125
+}

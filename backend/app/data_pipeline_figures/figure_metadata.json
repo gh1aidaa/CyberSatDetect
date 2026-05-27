@@ -1,0 +1,21 @@
+{
+  "sample_file": "data/reduced/chunk_595.npy",
+  "n_timesteps": 11900,
+  "invalid_timesteps": 0,
+  "demo_artifacts": false,
+  "segment_start_used": 0,
+  "segment_len": 800,
+  "artifact_search": {
+    "mode": "real_scan",
+    "scan_seed": 42,
+    "scan_max_files": 2000,
+    "files_scanned": 953,
+    "reason": "not_found_in_scan",
+    "candidates_total": 953,
+    "scan_scope": "all"
+  },
+  "window_size": 100,
+  "stride": 50,
+  "num_windows": 237,
+  "prefer_split": "test"
+}

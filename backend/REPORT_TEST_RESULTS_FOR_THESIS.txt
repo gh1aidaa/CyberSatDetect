@@ -1,0 +1,59 @@
+CyberSatDetect - automated verification output
+Generated (local): 2026-05-14T11:40:46
+Database: C:\Users\mohan\Desktop\gh\CyberSatDetectprojct2\CyberSatDetectprojct\backend\app\data\app.db
+
+========================================================================
+6.7.2 Model output validation (non-finite -> zero + log)
+========================================================================
+Procedure: FakeModel.predict() returns NaN in recon, +Inf in pred.
+Server log (stdout) during compute_scores_hybrid:
+[inference] Non-finite values in recon; replacing with 0.0
+[inference] Non-finite values in pred; replacing with 0.0
+
+Result: np.isfinite(scores).all() = True
+scores (first 4 windows): [ 9.438593  9.297576 10.11377   8.494007]
+PASS: hybrid window scores are all finite after validation.
+
+========================================================================
+6.3.4 File integrity (DB snapshot) + 6.3.1 incident counts
+========================================================================
+--- Incident counts (security logging) ---
+  FAILED_LOGIN: 3
+  INVALID_FILE: 1
+  FILE_TOO_LARGE: 1
+
+--- Recent runs: file_sha256 (integrity) sample ---
+  run_id=20260513092320_807d83...  sha256_prefix=f267578ea12fef412ba67ced...  len=64
+  run_id=20260513092154_b3f453...  sha256_prefix=bba70a2d1b85730fa88d9c57...  len=64
+  run_id=20260513092043_aa007d...  sha256_prefix=34f70e6f0b35d33febe9d5de...  len=64
+  run_id=20260513091012_e4eabc...  sha256_prefix=80b47f1753e2418405069dfe...  len=64
+
+--- Users: email stored (normalization demo) ---
+  stored email: 'gh1aidaa.s@gmail.com'
+  stored email: 'gh2aidaa.s@gmail.com'
+
+========================================================================
+7.4.2 Security headers (code presence check)
+========================================================================
+Active HTTP security headers (from SecurityHeadersMiddleware in api.py):
+  [OK] X-Frame-Options
+  [OK] X-Content-Type-Options
+  [OK] Strict-Transport-Security
+  [OK] Content-Security-Policy
+  [OK] Referrer-Policy
+  [OK] Permissions-Policy
+
+========================================================================
+6.5.5 Administrative notifications (env check)
+========================================================================
+Admin email notify configuration:
+  CSD_ADMIN_NOTIFY_EMAILS: set
+  GMAIL_USER / GMAIL_APP_PASSWORD: set
+  (Run test_admin_notify.py separately to trigger [admin-notify] Sent in server log.)
+
+========================================================================
+Notes for screenshots
+========================================================================
+1. Open this file in editor with monospace font -> screenshot.
+2. For live 429 rate limit: POST /runs/upload >10/min with valid token -> Too many requests.
+3. For live admin email: run python backend/scripts/test_admin_notify.py -> check server log + inbox.

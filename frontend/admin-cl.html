@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<title>CyberSatDetect | CL Admin</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="admin-cl.css">
+<link rel="stylesheet" href="admin-access-denied.css">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
+
+</head>
+
+<body>
+
+<div id="canvas_container"></div>
+
+<header class="navbar">
+  <div class="logo">
+    <span>CyberSatDetect</span>
+  </div>
+
+  <nav class="nav-links">
+    <a href="dashboard.html">Dashboard</a>
+    <a href="data-upload.html">Data Upload</a>
+    <a href="anomaly.html">Anomaly Detection</a>
+    <a href="analysis.html">Analysis</a>
+    <a href="reports.html">Reports</a>
+    <a class="active" href="admin-cl.html">CL Admin</a>
+    <a href="security.html">Security</a>
+    <a href="about.html">About</a>
+    <a href="terms.html">Terms</a>
+    <a class="logout" href="login.html">Logout</a>
+  </nav>
+</header>
+
+<div class="admin-page">
+
+<div class="panel">
+
+<div class="panel-header">
+<div>
+<h1>Continual Learning Control Panel</h1>
+<div class="subtitle">
+Review data, approve datasets, retrain models, and manage model versions
+</div>
+</div>
+</div>
+
+<h2 class="section-title">Normal Pool Review</h2>
+
+<div class="review-container">
+
+<div class="review-left">
+
+<label>Select File</label>
+<select id="normalFileSelect"></select>
+
+<div class="stats-box">
+<div>Mean: <span id="statMean">-</span></div>
+<div>Std: <span id="statStd">-</span></div>
+<div>Min: <span id="statMin">-</span></div>
+<div>Max: <span id="statMax">-</span></div>
+</div>
+
+<div class="buttons">
+<button id="approveBtn" onclick="approveFile()">Approve Dataset</button>
+<button id="rejectBtn" class="danger" onclick="rejectFile()">Reject File</button>
+</div>
+
+</div>
+
+<div class="review-right">
+<canvas id="dataChart"></canvas>
+</div>
+
+</div>
+
+<h2 class="section-title">Anomaly Pool Review</h2>
+
+<div class="review-container">
+
+<div class="review-left">
+
+<label>Select File</label>
+<select id="anomalyFileSelect"></select>
+
+<div class="stats-box">
+<div>Mean: <span id="anomStatMean">-</span></div>
+<div>Std: <span id="anomStatStd">-</span></div>
+<div>Min: <span id="anomStatMin">-</span></div>
+<div>Max: <span id="anomStatMax">-</span></div>
+</div>
+
+<div class="buttons">
+<button id="approveAnomBtn" onclick="approveAnomaly()">Approve Dataset</button>
+<button id="rejectAnomBtn" class="danger" onclick="rejectAnomaly()">Reject File</button>
+</div>
+
+</div>
+
+<div class="review-right">
+<canvas id="anomDataChart"></canvas>
+</div>
+
+</div>
+
+<h2 class="section-title">Approved Datasets</h2>
+
+<div class="dataset-box">
+
+<table id="datasetTable">
+<thead>
+<tr>
+<th>Dataset File</th>
+<th>Actions</th>
+</tr>
+</thead>
+<tbody></tbody>
+</table>
+
+<h3 style="margin:14px 0 8px; color:#9ecfff;">Approved Anomaly Datasets</h3>
+<table id="anomDatasetTable">
+<thead>
+<tr>
+<th>Dataset File</th>
+<th>Actions</th>
+</tr>
+</thead>
+<tbody></tbody>
+</table>
+
+<button id="buildBtn" class="btn-build" onclick="buildDataset()" style="margin-bottom:10px;">
+Build Dataset
+</button>
+
+<button id="trainBtn" class="btn-train" onclick="startTraining()">
+Start Continual Training
+</button>
+
+<div id="trainStatus" class="train-status" aria-live="polite"></div>
+
+</div>
+
+<h2 class="section-title">Model Registry</h2>
+
+<div class="registry-box">
+
+<table id="modelTable">
+<thead>
+<tr>
+<th>Version</th>
+<th>Status</th>
+<th>Created</th>
+<th>Approved</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody></tbody>
+</table>
+
+</div>
+</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.128/examples/js/controls/OrbitControls.js"></script>
+
+<script src="session-guard.js"></script>
+<script src="admin-access-denied.js"></script>
+<script src="admin-cl.js"></script>
+
+</body>
+</html>

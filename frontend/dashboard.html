@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CyberSatDetect | Dashboard</title>
+
+<!-- Disable caching during local development -->
+<meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+
+<link rel="stylesheet" href="dashboard.css?v=20260501b">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<!-- 3D BACKGROUND -->
+<div id="canvas_container"></div>
+
+<!-- NAVBAR -->
+<header class="navbar">
+  <div class="logo">
+    <span>CyberSatDetect</span>
+  </div>
+
+  <nav class="nav-links">
+    <a class="active" href="dashboard.html">Dashboard</a>
+    <a href="data-upload.html">Data Upload</a>
+    <a href="anomaly.html">Anomaly Detection</a>
+    <a href="analysis.html">Analysis</a>
+    <a href="reports.html">Reports</a>
+    <a href="admin-cl.html">CL Admin</a>
+    <a href="security.html">Security</a>
+    <a href="about.html">About</a>
+    <a href="terms.html">Terms</a>
+    <a class="logout" href="login.html">Logout</a>
+  </nav>
+</header>
+
+<!-- MAIN -->
+<main class="dashboard-page">
+
+  <!-- HEADER STRIP / KPIs -->
+  <section class="panel header-strip">
+    <div>
+      <h1>Mission Overview</h1>
+      <p class="subtitle">Real-time system status and anomaly metrics.</p>
+    </div>
+
+    <div class="header-kpis">
+      <div class="kpi">
+        <span class="kpi-label">Files Analyzed</span>
+        <div class="kpi-value" id="filesAnalyzed">—</div>
+      </div>
+
+      <div class="kpi">
+        <span class="kpi-label">Model Status</span>
+        <div class="kpi-pill" id="modelStatus">—</div>
+      </div>
+
+      <div class="kpi">
+        <span class="kpi-label">Alerts</span>
+        <div class="kpi-pill alert-count" id="alertCount">—</div>
+      </div>
+
+      <div class="kpi">
+        <span class="kpi-label">Last Update</span>
+        <div class="kpi-value" id="lastUpdate">—</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN GRID -->
+  <section class="main-grid">
+
+    <!-- LEFT COLUMN -->
+    <section class="left-col">
+
+      <!-- TIMELINE -->
+      <div class="panel expandable">
+        <div class="panel-header">
+          <h3>24h Timeline</h3>
+        </div>
+        <div class="timeline-bar" id="timelineBar"></div>
+      </div>
+
+      <!-- ACTIVITY FEED -->
+      <div class="panel expandable">
+        <div class="panel-header">
+          <h3>Activity Feed</h3>
+        </div>
+        <ul class="activity-list" id="activityList"></ul>
+      </div>
+
+      <!-- RUNS OVERVIEW (NEW) -->
+      <div class="panel expandable">
+        <div class="panel-header">
+          <h3>Execution Runs</h3>
+        </div>
+
+        <div class="runs-table-wrapper">
+          <table class="runs-table">
+            <thead>
+              <tr>
+                <th>File Name</th>
+                <th>Status</th>
+                <th>Created</th>
+                <th>Anomaly Rate</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="runsTableBody">
+              <tr>
+                <td colspan="5">Loading runs…</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- LINE CHART -->
+      <div class="panel expandable">
+        <div class="panel-header">
+          <h3>Anomalies per Run</h3>
+        </div>
+        <canvas id="anomalyChart"></canvas>
+      </div>
+
+    </section>
+
+    <!-- RIGHT COLUMN -->
+    <section class="right-col">
+
+      <!-- MODEL SNAPSHOT -->
+      <div class="panel expandable">
+        <div class="panel-header">
+          <h3>Model Snapshot</h3>
+        </div>
+
+        <div class="model-grid">
+          <div><span>Model Name</span><strong id="mName">MOD-AD-001</strong></div>
+          <div><span>Version</span><strong id="mVersion">v1.4.2</strong></div>
+          <div><span>Last Training</span><strong id="mLastTrain">—</strong></div>
+          <div><span>Accuracy</span><strong id="mAcc">—</strong></div>
+          <div><span>Prediction Success</span><strong id="predSuccess">—</strong></div>
+        </div>
+
+        <div class="health-bar">
+          <div id="healthFill"></div>
+        </div>
+        <p class="health-note" id="healthNote"></p>
+      </div>
+
+      <!-- PIE CHART -->
+      <div class="panel expandable">
+        <div class="panel-header">
+          <h3>Anomaly Types</h3>
+        </div>
+        <p class="chart-note" id="anomalyTypesNote" style="display:none;">No anomaly type data available yet.</p>
+        <canvas id="pieChart"></canvas>
+      </div>
+
+    </section>
+
+  </section>
+
+</main>
+
+<!-- LIBRARIES -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128/examples/js/controls/OrbitControls.js"></script>
+
+<!-- DASHBOARD LOGIC -->
+<script src="session-guard.js"></script>
+<script src="dashboard.js?v=20260501b"></script>
+
+</body>
+</html>

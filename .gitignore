@@ -1,0 +1,76 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyd
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+
+# Virtual envs
+.venv/
+venv/
+ENV/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Node / frontend
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Logs
+*.log
+
+# OS / editors
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# Secrets (keep local)
+.env
+.env.*
+*.pem
+*.key
+
+# Data / outputs (common in ML projects)
+data/
+datasets/
+outputs/
+results/
+wandb/
+mlruns/
+*.ckpt
+*.pt
+*.pth
+*.onnx
+
+# Model artifacts / large binaries (prefer releasing separately or via LFS)
+*.keras
+*.h5
+
+# Numpy / scientific binary dumps
+*.npy
+*.npz
+
+# Local databases / backups
+*.db
+*.sqlite
+*.sqlite3
+backend/backups/
+
+# Archives
+*.zip
+

@@ -1,0 +1,23 @@
+{
+    "mean": 0.014648746699094772,
+    "std": 0.09420451521873474,
+    "thresholds": {
+        "3sigma": 0.297262292355299,
+        "p99": 0.20147375762462616,
+        "p995": 0.30574238300323486,
+        "p997": 0.6043527722358704
+    },
+    "weights": {
+        "W_RECON": 1.0,
+        "W_PRED": 2.0,
+        "W_GRAD": 2.0,
+        "W_SEP": 0.5
+    },
+    "self_supervised": {
+        "pseudo_anomalies": [
+            "freeze",
+            "pattern_shift"
+        ],
+        "anomaly_margin": 0.15
+    }
+}

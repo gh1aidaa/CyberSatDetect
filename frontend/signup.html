@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CyberSatDetect | Sign Up</title>
+  <link rel="stylesheet" href="signup.css" />
+</head>
+<body>
+
+  <!-- Space background canvas -->
+  <div id="canvas_container"></div>
+
+  <main class="login-page">
+    <section class="login-card">
+
+      <div class="brand">
+        <h1>CyberSatDetect</h1>
+        <p>Create your mission account</p>
+      </div>
+
+      <form id="signupForm" novalidate>
+
+        <div class="field">
+          <label for="fullName">Full name</label>
+          <input type="text" id="fullName" required />
+          <small class="message error" id="errName"></small>
+        </div>
+
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" required />
+          <small class="message error" id="errEmail"></small>
+        </div>
+
+        <div class="field">
+          <label for="password">Password</label>
+          <input type="password" id="password" required />
+          <small class="message error" id="errPass"></small>
+        </div>
+
+        <div class="field">
+          <label for="confirmPassword">Confirm password</label>
+          <input type="password" id="confirmPassword" required />
+          <small class="message error" id="errConf"></small>
+        </div>
+
+      
+
+        <div class="field checkbox-row">
+          <label>
+            <input type="checkbox" id="agree" required />
+            I agree to the <a href="terms.html" target="_blank">Terms & Privacy</a>
+          </label>
+          <small class="message error" id="errAgree"></small>
+        </div>
+
+        <div class="actions">
+          <button type="submit" class="primary-btn" id="signupBtn">Create Account</button>
+        </div>
+
+        <div class="message" id="msg"></div>
+      </form>
+
+      <div class="links">
+        <a href="login.html">Already have an account? Log in</a>
+      </div>
+
+      
+
+    </section>
+  </main>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128/examples/js/controls/OrbitControls.js"></script>
+  <script src="signup.js"></script>
+</body>
+</html>

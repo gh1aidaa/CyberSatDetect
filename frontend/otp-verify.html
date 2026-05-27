@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CyberSatDetect | Verify OTP</title>
+
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+
+  <link rel="stylesheet" href="otp-verify.css" />
+</head>
+
+<body>
+
+  <!-- 🌌 Space background -->
+  <div id="canvas_container"></div>
+
+  <main class="otp-page">
+    <div class="otp-card">
+
+      <!-- BRAND -->
+      <div class="brand">
+        <h1>CyberSatDetect</h1>
+        <p>Verification Code</p>
+      </div>
+
+      <!-- OTP FORM -->
+      <div id="otpForm">
+
+        <!-- MESSAGE -->
+        <div class="info-message">
+          <p> A 6-digit code has been sent to your email</p>
+        </div>
+
+        <!-- OTP INPUT -->
+        <div class="field">
+          <label for="otpInput">Enter Verification Code</label>
+          <input 
+            id="otpInput" 
+            type="text" 
+            placeholder="6-digit code" 
+            maxlength="6"
+            inputmode="numeric"
+            autocomplete="one-time-code"
+          />
+        </div>
+
+        <!-- TIMER -->
+        <div class="timer-section">
+          <span id="timerText" class="timer">01:00</span>
+          <span class="timer-label">Time remaining</span>
+        </div>
+
+        <!-- ACTION BUTTONS -->
+        <div class="actions">
+          <button type="button" id="verifyBtn" class="btn btn-primary">
+            Verify OTP
+          </button>
+          <button type="button" id="resendBtn" class="btn btn-secondary" disabled>
+            Resend Code
+          </button>
+        </div>
+
+        <!-- MESSAGE -->
+        <p id="message" class="message"></p>
+
+        <!-- BACK LINK -->
+        <div class="back-link">
+          <a href="login.html">← Back to Login</a>
+        </div>
+
+      </div>
+
+      <!-- FOOTER -->
+      <footer class="otp-footer">
+        <span>Code valid for 1 minute</span>
+      </footer>
+
+    </div>
+  </main>
+
+  <!-- 🌌 Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128/examples/js/controls/OrbitControls.js"></script>
+
+  <!-- JS -->
+  <script src="./otp-verify.js?v=20260501a"></script>
+
+</body>
+</html>
