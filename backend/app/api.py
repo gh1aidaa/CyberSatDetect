@@ -20,7 +20,7 @@ import random
 import secrets
 import smtplib
 import resend
-import requests
+import requests"to": to_email,
 import html as html_mod
 import subprocess
 
@@ -639,25 +639,6 @@ def send_otp_email(to_email, otp):
 
     if response.status_code not in (200, 201):
         raise Exception("Failed to send OTP email")
-try:
-    resend.api_key = os.getenv("RESEND_API_KEY")
-
-    resend.Emails.send({
-        "from": "CyberSatDetect <onboarding@resend.dev>",
-        "to": to_email,
-        "subject": "CyberSatDetect OTP",
-        "html": f"""
-        <h2>CyberSatDetect Verification Code</h2>
-        <p>Your OTP code is:</p>
-        <h1>{otp}</h1>
-        """
-    })
-
-    print(f"[email] OTP sent successfully to {to_email}")
-
-except Exception as e:
-    print(f"[email] Error: {e}")
-    raise
 
 def _admin_notify_recipient_list() -> List[str]:
     raw = (os.getenv("CSD_ADMIN_NOTIFY_EMAILS") or "").strip()
