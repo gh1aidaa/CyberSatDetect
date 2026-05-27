@@ -20,6 +20,7 @@ import random
 import secrets
 import smtplib
 import resend
+import requests
 import html as html_mod
 import subprocess
 
@@ -611,36 +612,33 @@ def _resolve_under(base_dir: Path, p: Path) -> Path:
     raise HTTPException(400, "Invalid file path")
 
 def send_otp_email(to_email, otp):
-    """
-    إرسال رمز OTP عبر Gmail
-    
-    ⚠️ متطلبات هامة:
-    1. كلمة المرور يجب أن تكون App Password وليس كلمة المرور العادية
-    2. للحصول على App Password:
-       - اذهب إلى https://myaccount.google.com
-       - اضغط Security
-       - فعّل 2-Step Verification
-       - اذهب إلى App passwords
-       - اختر Mail و Windows Computer
-       - انسخ كلمة المرور المُنتجة هنا
-    """
-    sender_email = os.getenv("GMAIL_USER", "")
-    sender_password = os.getenv("GMAIL_APP_PASSWORD", "")
-    if not sender_email or not sender_password:
-        print(
-            "\n⚠️  WARNING: Gmail credentials not configured.\n"
-            "   Set them via environment variables:\n"
-            "     export GMAIL_USER=your-email@gmail.com\n"
-            "     export GMAIL_APP_PASSWORD=your-app-password\n"
-            "   Get an App Password at: https://myaccount.google.com/apppasswords\n"
-        )
-        raise HTTPException(500, "Email service not configured")
 
-    msg = MIMEText(f"Your verification code is: {otp}")
-    msg["Subject"] = "CyberSatDetect OTP"
-    msg["From"] = sender_email
-    msg["To"] = to_email
+    resend_api_key = os.getenv("RESEND_API_KEY")
 
+    response = requests.post(
+        "https://api.resend.com/emails",
+        headers={
+            "Authorization": f"Bearer {resend_api_key}",
+            "Content-Type": "application/json",
+        },
+        json={
+            "from": "CyberSatDetect <onboarding@resend.dev>",
+            "to": [to_email],
+            "subject": "CyberSatDetect OTP",
+            "html": f"""
+            <h2>Your Verification Code</h2>
+            <p>Your OTP is:</p>
+            <h1>{otp}</h1>
+            """,
+        },
+        timeout=20,
+    )
+
+    print("[email] Resend status:", response.status_code)
+    print("[email] Resend response:", response.text)
+
+    if response.status_code not in (200, 201):
+        raise Exception("Failed to send OTP email")
 try:
     resend.api_key = os.getenv("RESEND_API_KEY")
 
