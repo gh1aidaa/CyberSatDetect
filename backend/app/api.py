@@ -19,6 +19,7 @@ import traceback
 import random
 import secrets
 import smtplib
+import resend
 import html as html_mod
 import subprocess
 
@@ -640,20 +641,25 @@ def send_otp_email(to_email, otp):
     msg["From"] = sender_email
     msg["To"] = to_email
 
-    try:
-        with smtplib.SMTP("smtp.gmail.com", 587) as server:
-            server.starttls()
-            server.login(sender_email, sender_password)
-            server.send_message(msg)
-            print(f"[email] OTP sent successfully to {to_email}")
-    except Exception as e:
-        print(f"[email] Error: {e}")
-        print("[email] Please ensure:")
-        print("  1. Using App Password (not regular password)")
-        print("  2. 2-Step Verification is enabled")
-        print("  3. Go to https://myaccount.google.com/apppasswords to generate new password")
-        raise
+try:
+    resend.api_key = os.getenv("RESEND_API_KEY")
 
+    resend.Emails.send({
+        "from": "CyberSatDetect <onboarding@resend.dev>",
+        "to": to_email,
+        "subject": "CyberSatDetect OTP",
+        "html": f"""
+        <h2>CyberSatDetect Verification Code</h2>
+        <p>Your OTP code is:</p>
+        <h1>{otp}</h1>
+        """
+    })
+
+    print(f"[email] OTP sent successfully to {to_email}")
+
+except Exception as e:
+    print(f"[email] Error: {e}")
+    raise
 
 def _admin_notify_recipient_list() -> List[str]:
     raw = (os.getenv("CSD_ADMIN_NOTIFY_EMAILS") or "").strip()
