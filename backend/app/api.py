@@ -615,39 +615,39 @@ def _resolve_under(base_dir: Path, p: Path) -> Path:
     raise HTTPException(400, "Invalid file path")
 def send_otp_email(to_email, otp):
 
-    smtp_server = os.getenv("SMTP_SERVER")
-    smtp_port = int(os.getenv("SMTP_PORT"))
-    smtp_login = os.getenv("SMTP_LOGIN")
-    smtp_password = os.getenv("SMTP_PASSWORD")
+    brevo_api_key = os.getenv("BREVO_API_KEY")
     smtp_from = os.getenv("SMTP_FROM")
 
-    msg = MIMEMultipart()
-    msg["From"] = smtp_from
-    msg["To"] = to_email
-    msg["Subject"] = "CyberSatDetect OTP"
-
-    body = f"""
-    <h2>Your Verification Code</h2>
-    <p>Your OTP is:</p>
-    <h1>{otp}</h1>
-    """
-
-    msg.attach(MIMEText(body, "html"))
-
-    server = smtplib.SMTP(smtp_server, smtp_port)
-    server.starttls()
-
-    server.login(smtp_login, smtp_password)
-
-    server.sendmail(
-        smtp_from,
-        to_email,
-        msg.as_string()
+    response = requests.post(
+        "https://api.brevo.com/v3/smtp/email",
+        headers={
+            "accept": "application/json",
+            "api-key": brevo_api_key,
+            "content-type": "application/json",
+        },
+        json={
+            "sender": {
+                "name": "CyberSatDetect",
+                "email": smtp_from
+            },
+            "to": [
+                {"email": to_email}
+            ],
+            "subject": "CyberSatDetect OTP",
+            "htmlContent": f"""
+            <h2>Your Verification Code</h2>
+            <p>Your OTP is:</p>
+            <h1>{otp}</h1>
+            """
+        },
+        timeout=20,
     )
 
-    server.quit()
+    print("[email] Brevo status:", response.status_code)
+    print("[email] Brevo response:", response.text)
 
-    print("[email] OTP email sent successfully")
+    if response.status_code not in (200, 201, 202):
+        raise Exception("Failed to send OTP email")
 
 
 def _admin_notify_recipient_list() -> List[str]:
