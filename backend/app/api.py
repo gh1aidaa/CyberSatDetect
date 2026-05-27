@@ -20,7 +20,7 @@ import random
 import secrets
 import smtplib
 import resend
-import requests"to": to_email,
+import requests
 import html as html_mod
 import subprocess
 
