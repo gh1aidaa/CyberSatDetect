@@ -60,7 +60,7 @@ from pydantic import BaseModel, EmailStr
 
 import jwt
 
-from app.reporting import build_report_json, read_anomaly_table_rows, write_excel, write_pdf
+from backend.app.reporting import build_report_json, read_anomaly_table_rows, write_excel, write_pdf
 
 from slowapi import Limiter
 from slowapi.util import get_remote_address
