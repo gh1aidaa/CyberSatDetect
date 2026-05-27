@@ -647,7 +647,10 @@ def send_otp_email(to_email, otp):
 
     server.quit()
 
-    print("[email] OTP email sent successfully")def _admin_notify_recipient_list() -> List[str]:
+    print("[email] OTP email sent successfully")
+
+
+def _admin_notify_recipient_list() -> List[str]:
     raw = (os.getenv("CSD_ADMIN_NOTIFY_EMAILS") or "").strip()
     if not raw:
         return []
