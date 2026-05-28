@@ -129,6 +129,8 @@ CONTINUAL_NORMAL_POOL_DIR = CONTINUAL_DIR / "normal_pool"
 CONTINUAL_DATASET_DIR = CONTINUAL_DIR / "datasets"
 CONTINUAL_ANOMALY_POOL_DIR = CONTINUAL_DIR / "anomaly_pool"
 MODEL_REGISTRY_DIR = CONTINUAL_DIR / "models"
+CONTINUAL_ANOMALY_DATASET_DIR = CONTINUAL_DIR / "anomaly_datasets"
+CONTINUAL_ANOMALY_DATASET_DIR.mkdir(parents=True, exist_ok=True)
 
 # create folders if not exist
 CONTINUAL_DIR.mkdir(exist_ok=True)
