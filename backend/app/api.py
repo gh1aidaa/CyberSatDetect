@@ -35,8 +35,8 @@ from typing import Dict, Any, List, Tuple, Optional, Literal
 
 # Continual learning modules are optional. They may not be present in minimal installs.
 try:
-    from continual.dataset_builder import build_dataset
-    from continual.buffer_manager import process_and_store
+    from backend.continual.dataset_builder import build_dataset
+    from backend.continual.buffer_manager import process_and_store
 except Exception as e:
     print("[CONTINUAL IMPORT ERROR]", e)
     build_dataset = None

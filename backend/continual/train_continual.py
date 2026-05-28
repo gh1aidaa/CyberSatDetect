@@ -15,7 +15,7 @@ from typing import Tuple, Union
 
 import numpy as np
 
-from continual.config import (
+from backend.continual.config import (
     BATCH_SIZE,
     EPOCHS,
     LEARNING_RATE,

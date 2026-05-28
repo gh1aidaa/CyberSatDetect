@@ -1,7 +1,7 @@
 import numpy as np
 try:
 	from continual.buffer_manager import process_and_store
-	from continual.config import WINDOW_LEN
+	from backend.continual.config import WINDOW_LEN
 except ModuleNotFoundError:
 	from buffer_manager import process_and_store
 	from config import WINDOW_LEN
