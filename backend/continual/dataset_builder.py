@@ -2,7 +2,7 @@ import numpy as np
 import uuid
 from datetime import datetime
 
-from continual.config import (
+from backend.continual.config import (
     NORMAL_POOL_DIR,
     ANOMALY_POOL_DIR,
     DATASETS_DIR,
