@@ -67,7 +67,7 @@ SAFE_THRESHOLD_RATIO = 0.5
 MAX_WINDOWS_PER_RUN = 500
 
 # حجم dataset المطلوب قبل بدء التدريب
-TARGET_DATASET_SIZE = 500
+TARGET_DATASET_SIZE = 100
 
 # أقل عدد نوافذ طبيعية بعد التنظيف لقبول "Build dataset" (للإنتاج ارفع CSD_CONTINUAL_MIN_BUILD_WINDOWS)
 MIN_WINDOWS_FOR_DATASET_BUILD = _int_env("CSD_CONTINUAL_MIN_BUILD_WINDOWS", 32)
@@ -77,7 +77,7 @@ MIN_WINDOWS_FOR_DATASET_BUILD = _int_env("CSD_CONTINUAL_MIN_BUILD_WINDOWS", 32)
 # ==========================================
 LEARNING_RATE = 1e-5
 EPOCHS = 1
-BATCH_SIZE = 16
+BATCH_SIZE = 4
 
 # ==========================================
 # Continual Training Safety
