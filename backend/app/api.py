@@ -365,30 +365,23 @@ def select_largest_chunk_dataset() -> Path:
         return combined_npz
     return max(candidates, key=lambda p: p.stat().st_size)
 
-
 def resolve_continual_training_dataset_path() -> Path:
-    """
-    Dataset for continual fine-tuning must match the admin workflow: approved pools → Build Dataset
-    → ``backend/data/combined_dataset.npz``. Do *not* default to the largest raw chunk, which can be
-    stale or unrelated to the newly approved normal/anomaly shards.
-
-    Resolution order:
-      1) Path stored in TRAINING_STATUS after the last successful ``/admin/continual/build-dataset`` call.
-      2) ``backend/data/combined_dataset.npz`` if present (persisted build artefact).
-      3) Legacy fallback: ``select_largest_chunk_dataset()`` (largest candidate under backend/data).
-    """
     cached = (TRAINING_STATUS.get("dataset_path") or "").strip()
+
     if cached:
         p = Path(cached)
         if p.is_file():
             return p.resolve()
 
-    combined_npz = (BASE_DIR.parent / "data" / "combined_dataset.npz").resolve()
+    combined_npz = (DATA_DIR / "combined_dataset.npz").resolve()
     if combined_npz.is_file():
         return combined_npz
 
-    return select_largest_chunk_dataset()
+    combined_norm = (DATA_DIR / "combined_normal.npy").resolve()
+    if combined_norm.is_file():
+        return combined_norm
 
+    return combined_npz
 
 # =========================
 # SQLite bootstrap
