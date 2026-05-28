@@ -16,7 +16,7 @@ def _int_env(name: str, default: int) -> int:
 # ==========================================
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-DATA_DIR = BASE_DIR / "data"
+DATA_DIR = Path("/var/data")
 
 # ==========================================
 # Continual Data Structure
@@ -39,14 +39,14 @@ ANOMALY_DATASETS_DIR.mkdir(parents=True, exist_ok=True)
 # Base Model (المودل الأساسي)
 # ==========================================
 
-BASE_MODEL_PATH = BASE_DIR / "app" / "best_model_qc_filtered.keras"
+BASE_MODEL_PATH = BASE_DIR / "app" / "best_model_render.keras"
 BASE_THRESHOLD_PATH = BASE_DIR / "app" / "thresholds_qc_filtered.json"
 
 # ==========================================
 # Versioned Models
 # ==========================================
 
-MODELS_DIR = BASE_DIR / "models"
+MODELS_DIR = DATA_DIR / "continual" / "models"
 MODELS_DIR.mkdir(parents=True, exist_ok=True)
 
 # ==========================================
