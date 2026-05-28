@@ -77,7 +77,7 @@ MIN_WINDOWS_FOR_DATASET_BUILD = _int_env("CSD_CONTINUAL_MIN_BUILD_WINDOWS", 32)
 # ==========================================
 LEARNING_RATE = 1e-5
 EPOCHS = 1
-BATCH_SIZE = 4
+BATCH_SIZE = 1
 
 # ==========================================
 # Continual Training Safety
