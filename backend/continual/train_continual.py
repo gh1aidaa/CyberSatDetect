@@ -46,10 +46,19 @@ def _pick_base_model_path() -> Path:
     env = os.getenv("CSD_MODEL_PATH")
     if env:
         return Path(env)
-for name in ("best_model_render.keras", "best_model_qc_filtered.keras", "best_model.keras", "final_model.keras"):        p = app_dir / name
+
+    for name in (
+        "best_model_render.keras",
+        "best_model_qc_filtered.keras",
+        "best_model.keras",
+        "final_model.keras",
+    ):
+        p = app_dir / name
+
         if p.exists():
             return p
-    return app_dir / "best_model_qc_filtered.keras"
+
+    return app_dir / "best_model_render.keras"
 
 
 def _save_threshold_json(scores: np.ndarray, out_path: Path, thm) -> None:

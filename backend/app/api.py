@@ -37,7 +37,8 @@ from typing import Dict, Any, List, Tuple, Optional, Literal
 try:
     from continual.dataset_builder import build_dataset
     from continual.buffer_manager import process_and_store
-except Exception:
+except Exception as e:
+    print("[CONTINUAL IMPORT ERROR]", e)
     build_dataset = None
     process_and_store = None
 
