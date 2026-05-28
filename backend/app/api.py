@@ -3208,7 +3208,6 @@ def get_segment_window(
         "window_length": int(arr.size),
     }
 
-
 # ============================================================
 # Continual Admin - List Normal Pool Files
 # ============================================================
@@ -3216,20 +3215,15 @@ def get_segment_window(
 @app.get("/admin/continual/normal-files")
 def list_normal_files(admin=Depends(require_admin)):
 
-    normal_dir = BASE_DIR.parent / "data" / "continual" / "normal_pool"
+    CONTINUAL_NORMAL_POOL_DIR.mkdir(parents=True, exist_ok=True)
 
-    if not normal_dir.exists():
-        return {"count": 0, "files": []}
-
-    files = []
-
-    for f in normal_dir.glob("*.npy"):
-        files.append(f.name)
+    files = [f.name for f in CONTINUAL_NORMAL_POOL_DIR.glob("*.npy")]
 
     return {
         "count": len(files),
-        "files": sorted(files)
+        "files": sorted(files, reverse=True)
     }
+
 
 # ============================================================
 # Continual Admin - Read Normal Pool Data
@@ -3238,79 +3232,64 @@ def list_normal_files(admin=Depends(require_admin)):
 @app.get("/admin/continual/normal-data")
 def read_normal_data(file: str, view: str = "series", admin=Depends(require_admin)):
 
-    import numpy as np
-
-    normal_dir = BASE_DIR.parent / "data" / "continual" / "normal_pool"
-    file_path = normal_dir / file
+    file_path = CONTINUAL_NORMAL_POOL_DIR / file
 
     if not file_path.exists():
         raise HTTPException(404, "File not found")
 
     X = np.load(file_path)
 
-    # تحويل البيانات
+    flat = X.reshape(-1)
+
     if view == "windows":
         data = X.tolist()
-        flat = X.reshape(-1)
-
     else:
-        flat = X.reshape(-1)
-        data = flat.tolist()
-
-    # حساب الإحصائيات
-    mean = float(np.mean(flat))
-    std  = float(np.std(flat))
-    minv = float(np.min(flat))
-    maxv = float(np.max(flat))
+        data = flat[:1000].tolist()
 
     return {
         "file": file,
         "shape": list(X.shape),
         "view": view,
-        "mean": mean,
-        "std": std,
-        "min": minv,
-        "max": maxv,
+        "mean": float(np.mean(flat)),
+        "std": float(np.std(flat)),
+        "min": float(np.min(flat)),
+        "max": float(np.max(flat)),
         "data": data
     }
 
+
 # ============================================================
-# Continual Admin - Approve Dataset
+# Continual Admin - Approve Normal Dataset
 # ============================================================
 
 @app.post("/admin/continual/approve-normal")
 def approve_normal_file(file: str, admin=Depends(require_admin)):
 
-    import shutil
+    CONTINUAL_DATASET_DIR.mkdir(parents=True, exist_ok=True)
 
-    normal_dir = BASE_DIR.parent / "data" / "continual" / "normal_pool"
-    dataset_dir = BASE_DIR.parent / "data" / "continual" / "datasets"
-
-    dataset_dir.mkdir(parents=True, exist_ok=True)
-
-    src = normal_dir / file
+    src = CONTINUAL_NORMAL_POOL_DIR / file
 
     if not src.exists():
         raise HTTPException(404, "File not found")
 
-    dst = dataset_dir / file
+    dst = CONTINUAL_DATASET_DIR / file
 
-    shutil.move(src, dst)
+    shutil.move(str(src), str(dst))
 
     return {
         "status": "approved",
         "dataset_file": str(dst)
     }
 
+
 # ============================================================
-# Continual Admin - Reject Dataset
+# Continual Admin - Reject Normal Dataset
 # ============================================================
 
 @app.post("/admin/continual/reject-normal")
 def reject_normal_file(file: str, admin=Depends(require_admin)):
 
-    normal_dir = BASE_DIR.parent / "data" / "continual" / "normal_pool"
-    src = normal_dir / file
+    src = CONTINUAL_NORMAL_POOL_DIR / file
 
     if not src.exists():
         raise HTTPException(404, "File not found")
@@ -3322,58 +3301,69 @@ def reject_normal_file(file: str, admin=Depends(require_admin)):
         "deleted_file": file
     }
 
+
 # ============================================================
-# Continual Admin - List Datasets
+# Continual Admin - List Approved Normal Datasets
 # ============================================================
 
 @app.get("/admin/continual/datasets")
 def list_datasets(admin=Depends(require_admin)):
 
-    dataset_dir = BASE_DIR.parent / "data" / "continual" / "datasets"
+    CONTINUAL_DATASET_DIR.mkdir(parents=True, exist_ok=True)
 
-    if not dataset_dir.exists():
-        return {"datasets": []}
-
-    files = []
-
-    for f in dataset_dir.glob("*.npy"):
-        files.append(f.name)
+    files = [f.name for f in CONTINUAL_DATASET_DIR.glob("*.npy")]
 
     return {
         "count": len(files),
-        "datasets": sorted(files)
+        "datasets": sorted(files, reverse=True)
     }
 
 
 # ============================================================
-# Continual Admin - Anomaly Pool Files
+# Continual Admin - Anomaly Dataset Directory
+# ============================================================
+
+CONTINUAL_ANOMALY_DATASET_DIR = CONTINUAL_DIR / "anomaly_datasets"
+CONTINUAL_ANOMALY_DATASET_DIR.mkdir(parents=True, exist_ok=True)
+
+
+# ============================================================
+# Continual Admin - List Anomaly Pool Files
 # ============================================================
 
 @app.get("/admin/continual/anomaly-files")
 def list_anomaly_files(admin=Depends(require_admin)):
-    anomaly_dir = BASE_DIR.parent / "data" / "continual" / "anomaly_pool"
-    if not anomaly_dir.exists():
-        return {"count": 0, "files": []}
-    files = [f.name for f in anomaly_dir.glob("*.npy")]
-    return {"count": len(files), "files": sorted(files)}
 
+    CONTINUAL_ANOMALY_POOL_DIR.mkdir(parents=True, exist_ok=True)
+
+    files = [f.name for f in CONTINUAL_ANOMALY_POOL_DIR.glob("*.npy")]
+
+    return {
+        "count": len(files),
+        "files": sorted(files, reverse=True)
+    }
+
+
+# ============================================================
+# Continual Admin - Read Anomaly Pool Data
+# ============================================================
 
 @app.get("/admin/continual/anomaly-data")
 def read_anomaly_data(file: str, view: str = "series", admin=Depends(require_admin)):
-    import numpy as np
 
-    anomaly_dir = BASE_DIR.parent / "data" / "continual" / "anomaly_pool"
-    file_path = anomaly_dir / file
+    file_path = CONTINUAL_ANOMALY_POOL_DIR / file
+
     if not file_path.exists():
         raise HTTPException(404, "File not found")
 
     X = np.load(file_path)
+
+    flat = X.reshape(-1)
+
     if view == "windows":
         data = X.tolist()
-        flat = X.reshape(-1)
     else:
-        flat = X.reshape(-1)
-        data = flat.tolist()
+        data = flat[:1000].tolist()
 
     return {
         "file": file,
@@ -3383,47 +3373,69 @@ def read_anomaly_data(file: str, view: str = "series", admin=Depends(require_adm
         "std": float(np.std(flat)),
         "min": float(np.min(flat)),
         "max": float(np.max(flat)),
-        "data": data,
+        "data": data
     }
 
 
+# ============================================================
+# Continual Admin - Approve Anomaly Dataset
+# ============================================================
+
 @app.post("/admin/continual/approve-anomaly")
 def approve_anomaly_file(file: str, admin=Depends(require_admin)):
-    import shutil
 
-    anomaly_dir = BASE_DIR.parent / "data" / "continual" / "anomaly_pool"
-    dataset_dir = BASE_DIR.parent / "data" / "continual" / "anomaly_datasets"
-    dataset_dir.mkdir(parents=True, exist_ok=True)
+    CONTINUAL_ANOMALY_DATASET_DIR.mkdir(parents=True, exist_ok=True)
 
-    src = anomaly_dir / file
+    src = CONTINUAL_ANOMALY_POOL_DIR / file
+
     if not src.exists():
         raise HTTPException(404, "File not found")
-    dst = dataset_dir / file
-    shutil.move(src, dst)
-    return {"status": "approved", "dataset_file": str(dst)}
 
+    dst = CONTINUAL_ANOMALY_DATASET_DIR / file
+
+    shutil.move(str(src), str(dst))
+
+    return {
+        "status": "approved",
+        "dataset_file": str(dst)
+    }
+
+
+# ============================================================
+# Continual Admin - Reject Anomaly Dataset
+# ============================================================
 
 @app.post("/admin/continual/reject-anomaly")
 def reject_anomaly_file(file: str, admin=Depends(require_admin)):
-    anomaly_dir = BASE_DIR.parent / "data" / "continual" / "anomaly_pool"
-    src = anomaly_dir / file
+
+    src = CONTINUAL_ANOMALY_POOL_DIR / file
+
     if not src.exists():
         raise HTTPException(404, "File not found")
-    src.unlink()
-    return {"status": "rejected", "deleted_file": file}
 
+    src.unlink()
+
+    return {
+        "status": "rejected",
+        "deleted_file": file
+    }
+
+
+# ============================================================
+# Continual Admin - List Approved Anomaly Datasets
+# ============================================================
 
 @app.get("/admin/continual/anomaly-datasets")
 def list_anomaly_datasets(admin=Depends(require_admin)):
-    dataset_dir = BASE_DIR.parent / "data" / "continual" / "anomaly_datasets"
-    if not dataset_dir.exists():
-        return {"datasets": []}
-    files = [f.name for f in dataset_dir.glob("*.npy")]
-    return {"count": len(files), "datasets": sorted(files)}
 
+    CONTINUAL_ANOMALY_DATASET_DIR.mkdir(parents=True, exist_ok=True)
 
+    files = [f.name for f in CONTINUAL_ANOMALY_DATASET_DIR.glob("*.npy")]
 
-
+    return {
+        "count": len(files),
+        "datasets": sorted(files, reverse=True)
+    }
 # =========================
 # Dashboard runs
 # =========================
