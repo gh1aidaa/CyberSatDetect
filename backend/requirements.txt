@@ -8,8 +8,8 @@ bcrypt==5.0.0
 slowapi==0.1.9
 numpy==1.24.3
 pandas==2.2.0
-tensorflow==2.15.0
-keras==2.15.0
+tensorflow==2.16.1
+keras==3.8.0
 sqlalchemy==2.0.25
 reportlab==4.2.2
 openpyxl==3.1.5
