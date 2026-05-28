@@ -98,14 +98,19 @@ except Exception:
 # =========================
 # Continual Learning (admin-only)
 # =========================
+# =========================
+# Continual Learning (admin-only)
+# =========================
 CONTINUAL_AVAILABLE = True
-try:
-    from continual.dataset_builder import build_dataset
-    from continual.train_continual import fine_tune
-    from continual.config import DATASETS_DIR
-except Exception:
-    CONTINUAL_AVAILABLE = False
 
+try:
+    from backend.continual.dataset_builder import build_dataset
+    from backend.continual.train_continual import fine_tune
+    from backend.continual.config import DATASETS_DIR
+
+except Exception as e:
+    print("[CONTINUAL ADMIN IMPORT ERROR]", e)
+    CONTINUAL_AVAILABLE = False
 # =========================
 # App / Env
 # =========================
