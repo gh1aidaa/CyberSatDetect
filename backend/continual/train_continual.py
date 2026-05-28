@@ -179,16 +179,57 @@ def fine_tune(dataset_path: Union[str, Path]) -> Tuple[Path, Path, float]:
             loss_grad = thm.grad_mse(batch, recon)
             normal_scores = thm.batch_scores_tf(batch, recon, pred)
 
-            # Separation: prefer REAL approved anomalies if present, else fallback to pseudo anomalies
-            if anom_batch is not None:
-                a_recon, a_pred = model(anom_batch, training=True)
-                anom_scores = thm.batch_scores_tf(anom_batch, a_recon, a_pred)
-                loss_sep = tf.reduce_mean(tf.nn.relu(margin - (anom_scores - normal_scores)))
-            else:
-                pseudo_batch = thm.build_pseudo_anomalies(batch)
-                pseudo_recon, pseudo_pred = model(pseudo_batch, training=True)
-                pseudo_scores = thm.batch_scores_tf(pseudo_batch, pseudo_recon, pseudo_pred)
-                loss_sep = tf.reduce_mean(tf.nn.relu(margin - (pseudo_scores - normal_scores)))
+      # Separation: prefer REAL approved anomalies if present, else fallback to pseudo anomalies
+if anom_batch is not None:
+    a_recon, a_pred = model(anom_batch, training=True)
+    anom_scores = thm.batch_scores_tf(
+        anom_batch,
+        a_recon,
+        a_pred
+    )
+
+    # Match batch sizes before separation loss
+    k = tf.minimum(
+        tf.shape(anom_scores)[0],
+        tf.shape(normal_scores)[0]
+    )
+
+    anom_scores_k = anom_scores[:k]
+    normal_scores_k = normal_scores[:k]
+
+    loss_sep = tf.reduce_mean(
+        tf.nn.relu(
+            margin - (anom_scores_k - normal_scores_k)
+        )
+    )
+
+else:
+    pseudo_batch = thm.build_pseudo_anomalies(batch)
+
+    pseudo_recon, pseudo_pred = model(
+        pseudo_batch,
+        training=True
+    )
+
+    pseudo_scores = thm.batch_scores_tf(
+        pseudo_batch,
+        pseudo_recon,
+        pseudo_pred
+    )
+
+    k = tf.minimum(
+        tf.shape(pseudo_scores)[0],
+        tf.shape(normal_scores)[0]
+    )
+
+    pseudo_scores_k = pseudo_scores[:k]
+    normal_scores_k = normal_scores[:k]
+
+    loss_sep = tf.reduce_mean(
+        tf.nn.relu(
+            margin - (pseudo_scores_k - normal_scores_k)
+        )
+    )
 
             total_loss = (
                 w_recon * loss_recon
