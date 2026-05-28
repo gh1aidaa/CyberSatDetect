@@ -128,7 +128,9 @@ MODEL_REGISTRY_DIR = CONTINUAL_DIR / "models"
 CONTINUAL_DIR.mkdir(exist_ok=True)
 CONTINUAL_NORMAL_POOL_DIR.mkdir(exist_ok=True)
 CONTINUAL_DATASET_DIR.mkdir(exist_ok=True)
+CONTINUAL_ANOMALY_POOL_DIR.mkdir(exist_ok=True)
 MODEL_REGISTRY_DIR.mkdir(exist_ok=True)
+
 
 DB_PATH = DATA_DIR / "app.db"
 
