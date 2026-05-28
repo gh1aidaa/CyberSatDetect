@@ -134,7 +134,7 @@ DB_PATH = DATA_DIR / "app.db"
 
 # Canonical inference artifacts next to this module (backend/app/...)
 # Default production stack: QC-filtered model + matching thresholds (see thresholds_qc_filtered.json).
-BUNDLED_MODEL_PATH = (BASE_DIR / "best_model_qc_filtered.keras").resolve()
+BUNDLED_MODEL_PATH = (BASE_DIR / "best_model_render.keras").resolve()
 BUNDLED_THRESH_PATH = (BASE_DIR / "thresholds_qc_filtered.json").resolve()
 
 # Override with CSD_MODEL_PATH / CSD_THRESH_PATH when CSD_INFERENCE_USE_ENV_WITHOUT_REGISTRY=1
